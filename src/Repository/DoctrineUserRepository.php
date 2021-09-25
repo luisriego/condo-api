@@ -46,6 +46,11 @@ class DoctrineUserRepository extends DoctrineBaseRepository
         return $this->objectRepository->find($id);
     }
 
+    public function findOneByEmail(string $email): ?User
+    {
+        return $this->objectRepository->findOneBy(['email' => $email]);
+    }
+
     public function findOneByIdWithQueryBuilder(string $id): ?User
     {
         $qb = $this->objectRepository->createQueryBuilder('u');
