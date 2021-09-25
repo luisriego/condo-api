@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller\User;
 
 use App\Entity\User;
+use App\Http\DTO\CreateUserRequest;
 use App\Repository\DoctrineUserRepository;
 use App\Service\User\CreateUserService;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -18,11 +19,9 @@ class CreateUserAction
     {
     }
 
-    public function __invoke(Request $request): JsonResponse
+    public function __invoke(CreateUserRequest $request): JsonResponse
     {
-        $responseData = \json_decode($request->getContent(), true);
-
-        $user = $this->createUserService->__invoke($responseData['name'], $responseData['email']);
+        $user = $this->createUserService->__invoke($request->getName(), $request->getEmail());
 
         return new JsonResponse($user->toArray(), Response::HTTP_CREATED);
     }
