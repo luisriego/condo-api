@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use JetBrains\PhpStorm\ArrayShape;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Uid\Uuid;
 
@@ -25,6 +26,7 @@ class User implements UserInterface
         $this->email = $email;
         $this->password = null;
         $this->token = \sha1(\uniqid());
+        $this->isActive = false;
         $this->createdOn = new \DateTimeImmutable();
         $this->markAsUpdated();
     }
@@ -97,6 +99,19 @@ class User implements UserInterface
     public function markAsUpdated(): void
     {
         $this->updatedOn = new \DateTime();
+    }
+
+    #[ArrayShape(['id' => "string", 'name' => "string", 'email' => "string", 'token' => "string", 'createdOn' => "string", 'updatedOn' => "string"])]
+    public function toArray(): array
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'email' => $this->email,
+            'token' => $this->token,
+            'createdOn' => $this->createdOn->format(\DateTime::RFC3339),
+            'updatedOn' => $this->updatedOn->format(\DateTime::RFC3339),
+        ];
     }
 
 //    Implementations

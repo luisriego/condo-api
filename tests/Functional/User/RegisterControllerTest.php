@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class RegisterControllerTest extends FunctionalTestBase
 {
-    private const ENDPOINT = '/api/v1/users/register';
+    private const ENDPOINT = '/api/v1/users/create';
 
     public function testRegisterUser(): void
     {
@@ -28,6 +28,8 @@ class RegisterControllerTest extends FunctionalTestBase
         $response = self::$baseClient->getResponse();
 
         self::assertEquals(JsonResponse::HTTP_CREATED, $response->getStatusCode());
+        $responseData = \json_decode($response->getContent(), true);
+        self::assertArrayHasKey('token', $responseData);
     }
 
     // public function testRegisterUserWithNoName(): void
