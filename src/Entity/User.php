@@ -13,7 +13,7 @@ class User implements UserInterface
     private string $id;
     private string $name;
     private string $email;
-    private string $token;
+    private ?string $token;
     private bool $isActive;
     private ?string $password;
     private \DateTimeImmutable $createdOn;
@@ -61,7 +61,7 @@ class User implements UserInterface
         return $this->token;
     }
 
-    public function setToken(string $token): void
+    public function setToken(?string $token): void
     {
         $this->token = $token;
     }
@@ -101,7 +101,7 @@ class User implements UserInterface
         $this->updatedOn = new \DateTime();
     }
 
-    #[ArrayShape(['id' => "string", 'name' => "string", 'email' => "string", 'token' => "string", 'createdOn' => "string", 'updatedOn' => "string"])]
+    #[ArrayShape(['id' => "string", 'name' => "string", 'email' => "string", 'token' => "string", 'active' => "boolean", 'createdOn' => "string", 'updatedOn' => "string"])]
     public function toArray(): array
     {
         return [
@@ -109,6 +109,7 @@ class User implements UserInterface
             'name' => $this->name,
             'email' => $this->email,
             'token' => $this->token,
+            'active' => $this->isActive,
             'createdOn' => $this->createdOn->format(\DateTime::RFC3339),
             'updatedOn' => $this->updatedOn->format(\DateTime::RFC3339),
         ];

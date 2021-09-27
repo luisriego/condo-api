@@ -13,3 +13,7 @@ api_create_user:
     controller: App\Controller\User\CreateUserAction
     methods: [POST]
 
+api_activate_user:
+    path: /api/v1/users/activate
+    controller: App\Controller\User\ActivateUserAction
+    methods: [PUT]

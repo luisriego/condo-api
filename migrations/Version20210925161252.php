@@ -14,13 +14,13 @@ final class Version20210925161252 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return 'change token length to 50';
+        return 'change token length to 40';
     }
 
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE user CHANGE token token VARCHAR(50) DEFAULT NULL');
+        $this->addSql('ALTER TABLE user CHANGE token token VARCHAR(40) DEFAULT NULL');
     }
 
     public function down(Schema $schema): void

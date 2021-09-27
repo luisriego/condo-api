@@ -72,6 +72,18 @@ class DoctrineUserRepository extends DoctrineBaseRepository
         return $query->getOneOrNullResult();
     }
 
+    /**
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findOneByEmailAndToken(string $email, string $token): ?User
+    {
+        $query = $this->getEntityManager()->createQuery('SELECT u FROM App\Entity\User u WHERE (u.email = :email AND u.token = :token)');
+        $query->setParameter('email', $email);
+        $query->setParameter('token', $token);
+
+        return $query->getOneOrNullResult();
+    }
+
     public function findOnyByIdWithNativeQuery(string $id): ?User
     {
         $rsm = new ResultSetMappingBuilder($this->getEntityManager());

@@ -11,11 +11,11 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
-class RegisterControllerTest extends FunctionalTestBase
+class CreateUserActionTest extends FunctionalTestBase
 {
     private const ENDPOINT = '/api/v1/users/create';
 
-    public function testRegisterUser(): void
+    public function testCreateUser(): void
     {
         $payload = [
             'name' => 'Juan',
@@ -28,10 +28,12 @@ class RegisterControllerTest extends FunctionalTestBase
 
         self::assertEquals(JsonResponse::HTTP_CREATED, $response->getStatusCode());
         $responseData = \json_decode($response->getContent(), true);
+        self::assertArrayHasKey('name', $responseData);
+        self::assertArrayHasKey('email', $responseData);
         self::assertArrayHasKey('token', $responseData);
     }
 
-    public function testRegisterUserAlreadyExistMustFail(): void
+    public function testCreateUserMustHaveAConstrainConflict(): void
     {
         $payload = [
             'name' => 'Juan',
@@ -42,11 +44,11 @@ class RegisterControllerTest extends FunctionalTestBase
 
         $response = self::$baseClient->getResponse();
 
-        self::assertEquals(JsonResponse::HTTP_INTERNAL_SERVER_ERROR, $response->getStatusCode());
+        self::assertEquals(JsonResponse::HTTP_CONFLICT, $response->getStatusCode());
 
     }
 
-     public function testRegisterUserWithNoName(): void
+     public function testCreateUserWithNoName(): void
      {
          $payload = [
              'email' => 'juan@api.com'
@@ -59,7 +61,7 @@ class RegisterControllerTest extends FunctionalTestBase
          self::assertEquals(JsonResponse::HTTP_BAD_REQUEST, $response->getStatusCode());
      }
 
-     public function testRegisterUserWithNoEmail(): void
+     public function testCreateUserWithNoEmail(): void
      {
          $payload = [
              'name' => 'Juan'
@@ -72,7 +74,7 @@ class RegisterControllerTest extends FunctionalTestBase
          self::assertEquals(JsonResponse::HTTP_BAD_REQUEST, $response->getStatusCode());
      }
 
-     public function testRegisterUserWithInvalidName(): void
+     public function testCreateUserWithInvalidName(): void
      {
          $payload = [
              'name' => 'a',
@@ -86,7 +88,7 @@ class RegisterControllerTest extends FunctionalTestBase
          self::assertEquals(JsonResponse::HTTP_BAD_REQUEST, $response->getStatusCode());
      }
 
-     public function testRegisterUserWithInvalidEmail(): void
+     public function testCreateUserWithInvalidEmail(): void
      {
          $payload = [
              'name' => 'Juan',
