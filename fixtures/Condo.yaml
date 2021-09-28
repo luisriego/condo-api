@@ -1,0 +1,5 @@
+App\Entity\Condo:
+  Condo-0:
+    __construct:
+      cnpj: '0123456890123'
+      fantasyName: 'Condominio Bonito'

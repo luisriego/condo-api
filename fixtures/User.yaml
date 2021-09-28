@@ -1,0 +1,11 @@
+App\Entity\User:
+  User-0:
+    __construct:
+      name: Peter
+      email: peter@api.com
+    condos: ['@Condo-0']
+  User-1:
+    __construct:
+      name: Brian
+      email: briian@api.com
+    condos: ['@Condo-0']
