@@ -4,20 +4,24 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Trait\IdentifierTrait;
+use App\Trait\IsActiveTrait;
+use App\Trait\TimestampableTrait;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use JetBrains\PhpStorm\ArrayShape;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Uid\Uuid;
 
 class User implements UserInterface
 {
-    private string $id;
+    use IdentifierTrait, IsActiveTrait, TimestampableTrait;
+
     private string $name;
     private string $email;
     private ?string $token;
-    private bool $isActive;
     private ?string $password;
-    private \DateTimeImmutable $createdOn;
-    private \DateTime $updatedOn;
+    private Collection $condos;
 
     public function __construct(string $name, string $email) 
     {
@@ -27,13 +31,9 @@ class User implements UserInterface
         $this->password = null;
         $this->token = \sha1(\uniqid());
         $this->isActive = false;
+        $this->condos = new ArrayCollection();
         $this->createdOn = new \DateTimeImmutable();
         $this->markAsUpdated();
-    }
-
-    public function getId(): string
-    {
-        return $this->id;
     }
 
     public function getName(): string
@@ -66,16 +66,6 @@ class User implements UserInterface
         $this->token = $token;
     }
 
-    public function isActive(): bool
-    {
-        return $this->isActive;
-    }
-
-    public function setIsActive(bool $isActive): void
-    {
-        $this->isActive = $isActive;
-    }
-
     public function getPassword(): ?string
     {
         return $this->password;
@@ -86,19 +76,33 @@ class User implements UserInterface
         $this->password = $password;
     }
 
-    public function getCreatedOn(): \DateTimeImmutable|\DateTime
+    /**
+     * @return ArrayCollection|Collection
+     */
+    public function getCondos(): ArrayCollection|Collection
     {
-        return $this->createdOn;
+        return $this->condos;
     }
 
-    public function getUpdatedOn(): \DateTime
+    public function addCondo(Condo $condo): void
     {
-        return $this->updatedOn;
+        if ($this->condos->contains($condo)) {
+            return;
+        }
+
+        $this->condos->add($condo);
     }
 
-    public function markAsUpdated(): void
+    public function removeCondo(Condo $condo): void
     {
-        $this->updatedOn = new \DateTime();
+        if ($this->condos->contains($condo)) {
+            $this->condos->removeElement($condo);
+        }
+    }
+
+    public function isMemberOfCondo(Condo $condo): bool
+    {
+        return $this->condos->contains($condo);
     }
 
     #[ArrayShape(['id' => "string", 'name' => "string", 'email' => "string", 'token' => "string", 'active' => "boolean", 'createdOn' => "string", 'updatedOn' => "string"])]

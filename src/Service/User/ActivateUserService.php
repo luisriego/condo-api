@@ -13,16 +13,14 @@ class ActivateUserService
     {
     }
 
-    /**
-     * @throws \Doctrine\ORM\NonUniqueResultException
-     */
     public function __invoke(string $email, string $token, string $password): User
     {
         if (null === $user = $this->userRepository->findOneByEmailAndToken($email, $token)) {
             throw new UserNotFoundException("This User can't be Activate because not exist yet");
         }
+
         $user->setPassword($password);
-        $user->setIsActive(1);
+        $user->toggleActive();
         $user->setToken(null);
         $this->userRepository->save($user);
 

@@ -4,12 +4,9 @@ declare(strict_types=1);
 
 namespace App\Controller\User;
 
-use App\Entity\User;
 use App\Http\DTO\CreateUserRequest;
-use App\Repository\DoctrineUserRepository;
+use App\Http\Response\ApiResponse;
 use App\Service\User\CreateUserService;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class CreateUserAction
@@ -19,10 +16,10 @@ class CreateUserAction
     {
     }
 
-    public function __invoke(CreateUserRequest $request): JsonResponse
+    public function __invoke(CreateUserRequest $request): ApiResponse
     {
         $user = $this->createUserService->__invoke($request->getName(), $request->getEmail());
 
-        return new JsonResponse($user->toArray(), Response::HTTP_CREATED);
+        return new ApiResponse($user->toArray(), Response::HTTP_CREATED);
     }
 }

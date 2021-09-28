@@ -11,7 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
-class testValidateUser extends FunctionalTestBase
+class ValidateUserActionTest extends FunctionalTestBase
 {
     private const ENDPOINT_CREATE = '/api/v1/users/create';
     private const ENDPOINT = '/api/v1/users/activate';
@@ -19,8 +19,8 @@ class testValidateUser extends FunctionalTestBase
     public function testValidateUser(): void
     {
         $payload = [
-            'name' => 'Juan',
-            'email' => 'juan@api.com'
+            'name' => 'Token',
+            'email' => 'token@api.com'
         ];
 
         self::$baseClient->request(Request::METHOD_POST, self::ENDPOINT_CREATE, [], [], [], \json_encode($payload));
@@ -29,7 +29,7 @@ class testValidateUser extends FunctionalTestBase
         $token = $responseData['token'];
 
         $payload = [
-            'email' => 'juan@api.com',
+            'email' => 'token@api.com',
             'token' => $token,
             'password' => 'password'
         ];
@@ -49,7 +49,7 @@ class testValidateUser extends FunctionalTestBase
         $tokenInvalid = 'c55a1f1f9e18fbaeabd98c70c450d6828995a317';
 
         $payload = [
-            'email' => 'juan@api.com',
+            'email' => 'token@api.com',
             'token' => $tokenInvalid,
             'password' => 'password'
         ];

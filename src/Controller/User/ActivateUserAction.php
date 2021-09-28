@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Controller\User;
 
 use App\Http\DTO\ActivateUserRequest;
+use App\Http\Response\ApiResponse;
 use App\Service\User\ActivateUserService;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Response;
 
 class ActivateUserAction
 {
@@ -16,10 +16,10 @@ class ActivateUserAction
     {
     }
 
-    public function __invoke(ActivateUserRequest $request): JsonResponse
+    public function __invoke(ActivateUserRequest $request): ApiResponse
     {
         $user = $this->activateUserService->__invoke($request->getEmail(), $request->getToken(), $request->getPassword());
 
-        return new JsonResponse($user->toArray());
+        return new ApiResponse($user->toArray());
     }
 }
