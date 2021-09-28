@@ -11,7 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
-class testValidateUser extends FunctionalTestBase
+class ValidateUserActionTest extends FunctionalTestBase
 {
     private const ENDPOINT_CREATE = '/api/v1/users/create';
     private const ENDPOINT = '/api/v1/users/activate';
@@ -20,7 +20,7 @@ class testValidateUser extends FunctionalTestBase
     {
         $payload = [
             'name' => 'Juan',
-            'email' => 'juan@api.com'
+            'email' => 'juan2@api.com'
         ];
 
         self::$baseClient->request(Request::METHOD_POST, self::ENDPOINT_CREATE, [], [], [], \json_encode($payload));
@@ -29,7 +29,7 @@ class testValidateUser extends FunctionalTestBase
         $token = $responseData['token'];
 
         $payload = [
-            'email' => 'juan@api.com',
+            'email' => 'juan2@api.com',
             'token' => $token,
             'password' => 'password'
         ];
