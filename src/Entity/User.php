@@ -99,11 +99,11 @@ class User implements UserInterface
             $this->condos->removeElement($condo);
         }
     }
-//
-//    public function isMemberOfCondo(Condo $condo): bool
-//    {
-//        return $this->condos->contains($condo);
-//    }
+
+    public function isMemberOfCondo(Condo $condo): bool
+    {
+        return $this->condos->contains($condo);
+    }
 
     #[ArrayShape(['id' => "string", 'name' => "string", 'email' => "string", 'token' => "string", 'active' => "boolean", 'createdOn' => "string", 'updatedOn' => "string"])]
     public function toArray(): array

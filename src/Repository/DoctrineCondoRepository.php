@@ -19,14 +19,17 @@ class DoctrineCondoRepository extends DoctrineBaseRepository
         return $this->objectRepository->find($id);
     }
 
-//    /**
-//     * @throws \Doctrine\ORM\NonUniqueResultException
-//     */
-//    public function findOneByEmailAndToken(string $email, string $token): ?User
+    public function findOneByCnpj(string $cnpj): ?Condo
+    {
+        return $this->objectRepository->findOneBy(['cnpj' => $cnpj]);
+    }
+
+//    public function findOneByCnpj(string $cnpj): ?Condo
 //    {
-//        $query = $this->getEntityManager()->createQuery('SELECT u FROM App\Entity\User u WHERE (u.email = :email AND u.token = :token)');
-//        $query->setParameter('email', $email);
-//        $query->setParameter('token', $token);
+//        $query = $this->getEntityManager()->createQuery(
+//            'SELECT c FROM App\Entity\Condo c WHERE (c.cnpj = :cnpj AND c.isActive = true)'
+//        );
+//        $query->setParameter('cnpj', $cnpj);
 //
 //        return $query->getOneOrNullResult();
 //    }

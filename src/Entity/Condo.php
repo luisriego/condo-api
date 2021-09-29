@@ -60,6 +60,27 @@ class Condo
         return $this->users;
     }
 
+    public function addUser(User $user): void
+    {
+        if ($this->users->contains($user)) {
+            return;
+        }
+
+        $this->users->add($user);
+    }
+
+    public function removeUser(User $user): void
+    {
+        if ($this->users->contains($user)) {
+            $this->users->removeElement($user);
+        }
+    }
+
+    public function containsUser(User $user): bool
+    {
+        return $this->users->contains($user);
+    }
+
     #[ArrayShape(['id' => "string", 'fantasyName' => "string", 'cnpj' => "string", 'active' => "false", 'createdOn' => "string", 'updatedOn' => "string"])]
     public function toArray(): array
     {
