@@ -22,7 +22,7 @@ class ActivateUserService
             throw new UserNotFoundException("This User can't be Activate because not exist yet");
         }
         $user->setPassword($password);
-        $user->setIsActive(1);
+        $user->toggleActive();
         $user->setToken(null);
         $this->userRepository->save($user);
 

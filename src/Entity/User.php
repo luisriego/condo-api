@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Trait\IdentifierTrait;
+use App\Trait\IsActiveTrait;
+use App\Trait\TimestampableTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use JetBrains\PhpStorm\ArrayShape;
@@ -12,15 +15,13 @@ use Symfony\Component\Uid\Uuid;
 
 class User implements UserInterface
 {
-    private string $id;
+    use IdentifierTrait, TimestampableTrait, IsActiveTrait;
+
     private string $name;
     private string $email;
     private ?string $token;
-    private bool $isActive;
     private ?string $password;
     private Collection $condos;
-    private \DateTimeImmutable $createdOn;
-    private \DateTime $updatedOn;
 
     public function __construct(string $name, string $email) 
     {
@@ -33,11 +34,6 @@ class User implements UserInterface
         $this->condos = new ArrayCollection();
         $this->createdOn = new \DateTimeImmutable();
         $this->markAsUpdated();
-    }
-
-    public function getId(): string
-    {
-        return $this->id;
     }
 
     public function getName(): string
@@ -70,16 +66,6 @@ class User implements UserInterface
         $this->token = $token;
     }
 
-    public function isActive(): bool
-    {
-        return $this->isActive;
-    }
-
-    public function setIsActive(bool $isActive): void
-    {
-        $this->isActive = $isActive;
-    }
-
     public function getPassword(): ?string
     {
         return $this->password;
@@ -88,21 +74,6 @@ class User implements UserInterface
     public function setPassword(?string $password): void
     {
         $this->password = $password;
-    }
-
-    public function getCreatedOn(): \DateTimeImmutable|\DateTime
-    {
-        return $this->createdOn;
-    }
-
-    public function getUpdatedOn(): \DateTime
-    {
-        return $this->updatedOn;
-    }
-
-    public function markAsUpdated(): void
-    {
-        $this->updatedOn = new \DateTime();
     }
 
     /**
