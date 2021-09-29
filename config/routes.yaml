@@ -17,3 +17,9 @@ api_activate_user:
     path: /api/v1/users/activate
     controller: App\Controller\User\ActivateUserAction
     methods: [PUT]
+
+# Condo
+api_create_condo:
+    path: /api/v1/condos/create
+    controller: App\Controller\Condo\CreateCondoAction
+    methods: [POST]

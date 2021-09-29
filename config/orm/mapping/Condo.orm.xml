@@ -6,8 +6,8 @@
         <field name="cnpj" length="14" />
         <field name="fantasyName" length="60" />
         <field name="isActive" type="boolean" />
-        <field name="updatedOn" type="datetime_immutable" />
-        <field name="createdOn" type="datetime" />
+        <field name="createdOn" type="datetime_immutable" />
+        <field name="updatedOn" type="datetime" />
 
         <unique-constraints>
             <unique-constraint columns="cnpj" name="U_condo_cnpj"/>
