@@ -3,7 +3,7 @@
 namespace App\Service\User;
 
 use App\Entity\User;
-use App\Exception\UserNotFoundException;
+use App\Exception\User\UserNotFoundException;
 use App\Repository\DoctrineUserRepository;
 
 class ActivateUserService

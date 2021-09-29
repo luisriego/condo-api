@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Listener;
 
 use App\Exception\InvalidEmailException;
-use App\Exception\UserAlreadyExistsException;
-use App\Exception\UserNotFoundException;
+use App\Exception\User\UserAlreadyExistsException;
+use App\Exception\User\UserNotFoundException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;

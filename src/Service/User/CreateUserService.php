@@ -3,7 +3,7 @@
 namespace App\Service\User;
 
 use App\Entity\User;
-use App\Exception\UserAlreadyExistsException;
+use App\Exception\User\UserAlreadyExistsException;
 use App\Repository\DoctrineUserRepository;
 
 class CreateUserService

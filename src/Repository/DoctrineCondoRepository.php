@@ -24,15 +24,15 @@ class DoctrineCondoRepository extends DoctrineBaseRepository
         return $this->objectRepository->findOneBy(['cnpj' => $cnpj]);
     }
 
-//    public function findOneByCnpj(string $cnpj): ?Condo
-//    {
-//        $query = $this->getEntityManager()->createQuery(
-//            'SELECT c FROM App\Entity\Condo c WHERE (c.cnpj = :cnpj AND c.isActive = true)'
-//        );
-//        $query->setParameter('cnpj', $cnpj);
-//
-//        return $query->getOneOrNullResult();
-//    }
+    public function findOneByCnpjAndIsActive(string $cnpj): ?Condo
+    {
+        $query = $this->getEntityManager()->createQuery(
+            'SELECT c FROM App\Entity\Condo c WHERE (c.cnpj = :cnpj AND c.isActive = true)'
+        );
+        $query->setParameter('cnpj', $cnpj);
+
+        return $query->getOneOrNullResult();
+    }
 
     public function save(Condo $condo): void
     {

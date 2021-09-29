@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Exception;
+namespace App\Exception\User;
 
 class UserAlreadyExistsException extends \DomainException
 {

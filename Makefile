@@ -31,6 +31,7 @@ build: ## Rebuilds all the containers
 prepare: ## Runs backend commands
 	$(MAKE) composer-install
 	$(MAKE) migrations
+	$(MAKE) generate-ssh-keys
 
 # Backend commands
 composer-install: ## Installs composer dependencies
@@ -48,6 +49,11 @@ ssh-be: ## bash into the be container
 
 code-style: ## Runs php-cs to fix code styling following Symfony rules
 	U_ID=${UID} docker exec --user ${UID} ${DOCKER_BE} php-cs-fixer fix src --rules=@Symfony
+
+generate-ssh-keys: ## Generates SSH keys for the JWT library
+	U_ID=${UID} docker exec -it --user ${UID} ${DOCKER_BE} mkdir -p config/jwt
+	U_ID=${UID} docker exec -it --user ${UID} ${DOCKER_BE} openssl genrsa -passout pass:50bc85fc848b4b2d53ec52d551cb4b3c -out config/jwt/private.pem -aes256 4096
+	U_ID=${UID} docker exec -it --user ${UID} ${DOCKER_BE} openssl rsa -pubout -passin pass:50bc85fc848b4b2d53ec52d551cb4b3c -in config/jwt/private.pem -out config/jwt/public.pem
 
 .PHONY: migrations
 

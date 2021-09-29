@@ -8,6 +8,16 @@ health_check:
     methods: [GET]
 
 # User
+#api_get_user:
+#    path: /api/v1/users
+#    controller: App\Controller\User\GetUserAction
+#    methods: [ GET ]
+
+api.user.get:
+    path: /api/v1/users/{id}
+    controller: App\Controller\User\GetUserByIdAction
+    methods: [ GET ]
+
 api_create_user:
     path: /api/v1/users/create
     controller: App\Controller\User\CreateUserAction
