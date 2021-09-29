@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use JetBrains\PhpStorm\ArrayShape;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Uid\Uuid;
@@ -16,6 +18,7 @@ class User implements UserInterface
     private ?string $token;
     private bool $isActive;
     private ?string $password;
+    private Collection $condos;
     private \DateTimeImmutable $createdOn;
     private \DateTime $updatedOn;
 
@@ -27,6 +30,7 @@ class User implements UserInterface
         $this->password = null;
         $this->token = \sha1(\uniqid());
         $this->isActive = false;
+        $this->condos = new ArrayCollection();
         $this->createdOn = new \DateTimeImmutable();
         $this->markAsUpdated();
     }
@@ -100,6 +104,35 @@ class User implements UserInterface
     {
         $this->updatedOn = new \DateTime();
     }
+
+    /**
+     * @return ArrayCollection|Collection
+     */
+    public function getCondos(): ArrayCollection|Collection
+    {
+        return $this->condos;
+    }
+
+    public function addCondo(Condo $condo): void
+    {
+        if ($this->condos->contains($condo)) {
+            return;
+        }
+
+        $this->condos->add($condo);
+    }
+
+    public function removeCondo(Condo $condo): void
+    {
+        if ($this->condos->contains($condo)) {
+            $this->condos->removeElement($condo);
+        }
+    }
+//
+//    public function isMemberOfCondo(Condo $condo): bool
+//    {
+//        return $this->condos->contains($condo);
+//    }
 
     #[ArrayShape(['id' => "string", 'name' => "string", 'email' => "string", 'token' => "string", 'active' => "boolean", 'createdOn' => "string", 'updatedOn' => "string"])]
     public function toArray(): array

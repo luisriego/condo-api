@@ -13,6 +13,8 @@
             <unique-constraint columns="cnpj" name="U_condo_cnpj"/>
         </unique-constraints>
 
+        <many-to-many field="users" mapped-by="condos" target-entity="App\Entity\User"/>
+
         <lifecycle-callbacks>
             <lifecycle-callback type="preUpdate" method="markAsUpdated"/>
         </lifecycle-callbacks>

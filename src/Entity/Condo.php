@@ -7,6 +7,9 @@ namespace App\Entity;
 use App\Trait\IdentifierTrait;
 use App\Trait\IsActiveTrait;
 use App\Trait\TimestampableTrait;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use JetBrains\PhpStorm\ArrayShape;
 use Symfony\Component\Uid\Uuid;
 
 class Condo
@@ -15,6 +18,7 @@ class Condo
 
     private string $cnpj;
     private string $fantasyName;
+    private Collection $users;
 
     /**
      * @param string $cnpj
@@ -26,6 +30,7 @@ class Condo
         $this->cnpj = $cnpj;
         $this->fantasyName = $fantasyName;
         $this->isActive = false;
+        $this->users = new ArrayCollection();
         $this->createdOn = new \DateTimeImmutable();
         $this->markAsUpdated();
     }
@@ -50,6 +55,12 @@ class Condo
         $this->fantasyName = $fantasyName;
     }
 
+    public function getUsers(): ArrayCollection | Collection
+    {
+        return $this->users;
+    }
+
+    #[ArrayShape(['id' => "string", 'fantasyName' => "string", 'cnpj' => "string", 'active' => "false", 'createdOn' => "string", 'updatedOn' => "string"])]
     public function toArray(): array
     {
         return [
