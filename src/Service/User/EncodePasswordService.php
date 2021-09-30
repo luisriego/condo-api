@@ -6,6 +6,7 @@ namespace App\Service\User;
 
 use App\Entity\User;
 use App\Exception\Password\PasswordException;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -13,7 +14,7 @@ class EncodePasswordService
 {
     private const MINIMUM_LENGTH = 6;
 
-    public function __construct(private UserPasswordEncoderInterface $userPasswordEncoder)
+    public function __construct(private UserPasswordHasherInterface $passwordHasher)
     { }
 
     public function generateEncodedPassword(UserInterface $user, string $password)
@@ -23,11 +24,11 @@ class EncodePasswordService
         }
 
 
-        return $this->userPasswordEncoder->encodePassword($user, $password);
+        return $this->passwordHasher->hashPassword($user, $password);
     }
 
     public function isValidPassword(User $user, string $oldPassword): bool
     {
-        return $this->userPasswordEncoder->isPasswordValid($user, $oldPassword);
+        return $this->passwordHasher->isPasswordValid($user, $oldPassword);
     }
 }

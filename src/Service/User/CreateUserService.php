@@ -15,11 +15,11 @@ class CreateUserService
 
     public function __invoke(string $name, string $email): User
     {
-        $user = new User($name, $email);
-
         if ($this->userRepository->findOneByEmail($email)) {
-            throw new UserAlreadyExistsException("User already exists");
+            throw UserAlreadyExistsException::fromEmail($email);
         }
+
+        $user = new User($name, $email);
         $this->userRepository->save($user);
 
         return $user;

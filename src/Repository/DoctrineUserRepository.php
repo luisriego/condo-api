@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Repository;
 
 use App\Entity\User;
+use App\Exception\User\UserNotFoundException;
 use Doctrine\ORM\Query\ResultSetMappingBuilder;
 
 class DoctrineUserRepository extends DoctrineBaseRepository
@@ -51,6 +52,15 @@ class DoctrineUserRepository extends DoctrineBaseRepository
         return $this->objectRepository->findOneBy(['email' => $email]);
     }
 
+    public function findOneByEmailOrFail(string $email): ?User
+    {
+        if (null === $user = $this->objectRepository->findOneBy(['email' => $email, 'isActive' => true])) {
+            throw UserNotFoundException::fromEmail($email);
+        }
+
+        return $user;
+    }
+
     public function findOneByIdWithQueryBuilder(string $id): ?User
     {
         $qb = $this->objectRepository->createQueryBuilder('u');
@@ -82,6 +92,15 @@ class DoctrineUserRepository extends DoctrineBaseRepository
         $query->setParameter('token', $token);
 
         return $query->getOneOrNullResult();
+    }
+
+    public function findOneInactiveByEmailAndTokenOrFail(string $email, string $token): User
+    {
+        if (null === $user = $this->objectRepository->findOneBy(['email' => $email, 'token' => $token, 'isActive' => false])) {
+            throw UserNotFoundException::fromEmailAndToken($email, $token);
+        }
+
+        return $user;
     }
 
     public function findOnyByIdWithNativeQuery(string $id): ?User

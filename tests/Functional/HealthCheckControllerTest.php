@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class HealthCheckControllerTest extends WebTestCase
 {
-    private const ENDPOINT = '/api/v1/health-check';
+    private const ENDPOINT = '/health-check';
 
     public function testHealthCheck(): void
     {

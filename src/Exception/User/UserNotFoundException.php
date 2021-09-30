@@ -15,4 +15,9 @@ class UserNotFoundException extends \DomainException
     {
         throw new self(\sprintf('User with ID %s not found', $id));
     }
+
+    public static function fromEmailAndToken(string $email, string $token): self
+    {
+        throw new self(\sprintf('User with email %s and token %s not found', $email, $token));
+    }
 }
