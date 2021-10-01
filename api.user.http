@@ -1,0 +1,30 @@
+POST http://{{host}}/api/v1/users/create
+Content-Type: application/json
+
+{
+  "name": "Santi",
+  "email": "santi2@api.com"
+}
+
+###
+
+PUT http://{{host}}/api/v1/users/activate
+Content-Type: application/json
+
+{
+  "email": "santi2@api.com",
+  "token": "231ad5d87f012f8e5ed1ac2296b15841fb0cf3fc",
+  "password": "password"
+}
+
+###
+
+POST http://{{host}}/api/v1/users/login_check
+Content-Type: application/json
+
+{
+  "username": "santi2@api.com",
+  "password": "password"
+}
+
+###
