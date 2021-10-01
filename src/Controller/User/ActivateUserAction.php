@@ -7,11 +7,9 @@ namespace App\Controller\User;
 use App\Http\DTO\ActivateUserRequest;
 use App\Service\User\ActivateUserService;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Response;
 
 class ActivateUserAction
 {
-
     public function __construct(private ActivateUserService $activateUserService)
     {
     }

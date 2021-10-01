@@ -15,7 +15,9 @@ use Symfony\Component\Uid\Uuid;
 
 class User implements UserInterface
 {
-    use IdentifierTrait, TimestampableTrait, IsActiveTrait;
+    use IdentifierTrait;
+    use TimestampableTrait;
+    use IsActiveTrait;
 
     private string $name;
     private string $email;
@@ -23,7 +25,7 @@ class User implements UserInterface
     private ?string $password;
     private Collection $condos;
 
-    public function __construct(string $name, string $email) 
+    public function __construct(string $name, string $email)
     {
         $this->id = Uuid::v4()->toRfc4122();
         $this->name = $name;
@@ -105,7 +107,7 @@ class User implements UserInterface
         return $this->condos->contains($condo);
     }
 
-    #[ArrayShape(['id' => "string", 'name' => "string", 'email' => "string", 'token' => "string", 'active' => "boolean", 'createdOn' => "string", 'updatedOn' => "string"])]
+    #[ArrayShape(['id' => 'string', 'name' => 'string', 'email' => 'string', 'token' => 'string', 'active' => 'boolean', 'createdOn' => 'string', 'updatedOn' => 'string'])]
     public function toArray(): array
     {
         return [

@@ -4,14 +4,12 @@ declare(strict_types=1);
 
 namespace App\Service\Condo;
 
-
 use App\Entity\Condo;
 use App\Exception\Condo\CondoAlreadyExistsException;
 use App\Repository\DoctrineCondoRepository;
 
 class CreateCondoService
 {
-
     public function __construct(private DoctrineCondoRepository $condoRepository)
     {
     }

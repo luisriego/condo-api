@@ -9,8 +9,9 @@ use Symfony\Component\HttpFoundation\Request;
 
 class HealthCheckController
 {
-    public function __construct() 
-    { }
+    public function __construct()
+    {
+    }
 
     public function __invoke(Request $request): JsonResponse
     {

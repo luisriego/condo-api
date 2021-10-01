@@ -6,7 +6,6 @@ namespace App\Controller\User;
 
 use App\Http\Response\ApiResponse;
 use App\Repository\DoctrineUserRepository;
-use Symfony\Component\HttpFoundation\Request;
 
 class GetUserAction
 {

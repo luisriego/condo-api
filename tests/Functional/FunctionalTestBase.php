@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional;
 
+use App\Repository\DoctrineUserRepository;
 use App\Repository\UserRepository;
 use Doctrine\DBAL\Connection;
 use Hautelook\AliceBundle\PhpUnit\RecreateDatabaseTrait;
@@ -35,18 +36,18 @@ class FunctionalTestBase extends WebTestCase
             ]);
         }
 
-        // if (null === self::$authenticatedClient) {
-        //     self::$authenticatedClient = clone self::$client;
+         if (null === self::$authenticatedClient) {
+             self::$authenticatedClient = clone self::$client;
 
-        //     $user = static::$container->get(UserRepository::class)->byEmailOrFail('peter@api.com');
-        //     $token = static::$container->get(JWTTokenManagerInterface::class)->create($user);
+             $user = static::$container->get(DoctrineUserRepository::class)->findOneByEmailOrFail('luis@api.com');
+             $token = static::$container->get(JWTTokenManagerInterface::class)->create($user);
 
-        //     self::$authenticatedClient->setServerParameters([
-        //         'CONTENT_TYPE' => 'application/json',
-        //         'HTTP_ACCEPT' => 'application/json',
-        //         'HTTP_Authorization' => \sprintf('Bearer %s', $token),
-        //     ]);
-        // }
+             self::$authenticatedClient->setServerParameters([
+                 'CONTENT_TYPE' => 'application/json',
+                 'HTTP_ACCEPT' => 'application/json',
+                 'HTTP_Authorization' => \sprintf('Bearer %s', $token),
+             ]);
+         }
     }
 
     protected static function initDBConnection(): Connection
@@ -58,8 +59,8 @@ class FunctionalTestBase extends WebTestCase
         return static::$kernel->getContainer()->get('doctrine')->getConnection();
     }
 
-    protected function getPeterId()
+    protected function getLuisId()
     {
-        return self::initDBConnection()->executeQuery('SELECT id FROM user WHERE email = "peter@api.com"')->fetchOne();
+        return self::initDBConnection()->executeQuery('SELECT id FROM user WHERE email = "luis@api.com"')->fetchOne();
     }
 }

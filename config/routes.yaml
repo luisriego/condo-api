@@ -19,6 +19,11 @@ api_activate_user:
     controller: App\Controller\User\ActivateUserAction
     methods: [PUT]
 
+api_change_password:
+    path: /api/v1/users/{id}/change_password
+    controller: App\Controller\User\ChangePasswordAction
+    methods: [PUT]
+
 api_login_check:
     path: /api/v1/users/login_check
     controller: App\Controller\User\LoginCheckAction

@@ -6,5 +6,6 @@ namespace App\Trait;
 
 trait TimestampableTrait
 {
-    use CreatedOnTrait, UpdatedOnTrait;
+    use CreatedOnTrait;
+    use UpdatedOnTrait;
 }

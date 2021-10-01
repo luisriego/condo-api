@@ -28,3 +28,13 @@ Content-Type: application/json
 }
 
 ###
+
+PUT http://{{host}}/api/v1/users/c92f7694-8511-4f18-85ee-9cff6cebfbc0/change_password
+Content-Type: application/json
+
+{
+  "oldPass": "password",
+  "newPass": "nwe-password"
+}
+
+###

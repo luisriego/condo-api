@@ -14,16 +14,14 @@ use Symfony\Component\Uid\Uuid;
 
 class Condo
 {
-    use IdentifierTrait, IsActiveTrait, TimestampableTrait;
+    use IdentifierTrait;
+    use IsActiveTrait;
+    use TimestampableTrait;
 
     private string $cnpj;
     private string $fantasyName;
     private Collection $users;
 
-    /**
-     * @param string $cnpj
-     * @param string $fantasyName
-     */
     public function __construct(string $cnpj, string $fantasyName)
     {
         $this->id = Uuid::v4()->toRfc4122();
@@ -81,7 +79,7 @@ class Condo
         return $this->users->contains($user);
     }
 
-    #[ArrayShape(['id' => "string", 'fantasyName' => "string", 'cnpj' => "string", 'active' => "false", 'createdOn' => "string", 'updatedOn' => "string"])]
+    #[ArrayShape(['id' => 'string', 'fantasyName' => 'string', 'cnpj' => 'string', 'active' => 'false', 'createdOn' => 'string', 'updatedOn' => 'string'])]
     public function toArray(): array
     {
         return [

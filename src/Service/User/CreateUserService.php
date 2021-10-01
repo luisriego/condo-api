@@ -8,7 +8,6 @@ use App\Repository\DoctrineUserRepository;
 
 class CreateUserService
 {
-
     public function __construct(private DoctrineUserRepository $userRepository)
     {
     }
