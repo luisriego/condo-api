@@ -1,0 +1,7 @@
+POST http://localhost:1000/api/v1/users/login_check HTTP/1.1
+content-type: application/json
+
+{
+    "username": "santi@api.com",
+	"password": "password"
+}

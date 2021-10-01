@@ -1,7 +1,3 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
-
 health_check:
     path: /health-check
     controller: App\Controller\HealthCheckController
@@ -22,6 +18,11 @@ api_activate_user:
     path: /api/v1/users/activate
     controller: App\Controller\User\ActivateUserAction
     methods: [PUT]
+
+api_login_check:
+    path: /api/v1/users/login_check
+    controller: App\Controller\User\LoginCheckAction
+    methods: [POST]
 
 # Condo
 api_create_condo:
