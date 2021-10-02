@@ -1,0 +1,41 @@
+health_check:
+    path: /health-check
+    controller: App\Controller\HealthCheckController
+    methods: [GET]
+
+# User
+api_user_get_all:
+    path: /api/v1/users
+    controller: App\Controller\User\Get
+    methods: [ GET ]
+
+api_user_get:
+    path: /api/v1/users/{id}
+    controller: App\Controller\User\GetUserByIdAction
+    methods: [ GET ]
+
+api_create_user:
+    path: /api/v1/users/create
+    controller: App\Controller\User\CreateUserAction
+    methods: [POST]
+
+api_activate_user:
+    path: /api/v1/users/activate
+    controller: App\Controller\User\ActivateUserAction
+    methods: [PUT]
+
+api_change_password:
+    path: /api/v1/users/{id}/change_password
+    controller: App\Controller\User\ChangePasswordAction
+    methods: [PUT]
+
+api_login_check:
+    path: /api/v1/users/login_check
+    controller: App\Controller\User\LoginCheckAction
+    methods: [POST]
+
+# Condo
+api_create_condo:
+    path: /api/v1/condos/create
+    controller: App\Controller\Condo\CreateCondoAction
+    methods: [POST]

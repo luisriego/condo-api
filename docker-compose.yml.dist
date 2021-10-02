@@ -1,8 +1,8 @@
 version: '3.5'
 
 services:
-  docker-dev-env-for-symfony-web:
-    container_name: docker-dev-env-for-symfony-web
+  condominio-matisse-web:
+    container_name: condominio-matisse-web
     build:
       context: ./docker/nginx
       args:
@@ -12,12 +12,12 @@ services:
     volumes:
       - ./public:/appdata/www/public
     depends_on:
-      - docker-dev-env-for-symfony-be
+      - condominio-matisse-be
     networks:
-      - docker-dev-env-for-symfony-network
+      - condominio-matisse-network
 
-  docker-dev-env-for-symfony-be:
-    container_name: docker-dev-env-for-symfony-be
+  condominio-matisse-be:
+    container_name: condominio-matisse-be
     build:
       context: docker/php
       args:
@@ -31,12 +31,12 @@ services:
     environment:
       XDEBUG_CLIENT_HOST: 172.17.0.1
       XDEBUG_CLIENT_PORT: 9003
-      PHP_IDE_CONFIG: serverName=docker-dev-env-for-symfony
+      PHP_IDE_CONFIG: serverName=condominio-matisse
     networks:
-      - docker-dev-env-for-symfony-network
+      - condominio-matisse-network
 
-  docker-dev-env-for-symfony-db:
-    container_name: docker-dev-env-for-symfony-db
+  condominio-matisse-db:
+    container_name: condominio-matisse-db
     build:
       context: ./docker/database
     ports:
@@ -45,14 +45,14 @@ services:
       MYSQL_DATABASE: database
       MYSQL_ROOT_PASSWORD: root
     volumes:
-      - docker-dev-env-for-symfony-db-data:/var/lib/mysql
+      - condominio-matisse-db-data:/var/lib/mysql
     networks:
-      - docker-dev-env-for-symfony-network
+      - condominio-matisse-network
     command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
 
 volumes:
-  docker-dev-env-for-symfony-db-data:
+  condominio-matisse-db-data:
 
 networks:
-  docker-dev-env-for-symfony-network:
+  condominio-matisse-network:
     external: true

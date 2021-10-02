@@ -1,0 +1,46 @@
+POST http://{{host}}/api/v1/users/create
+Content-Type: application/json
+
+{
+  "name": "Luis",
+  "email": "luis@api.com"
+}
+
+###
+
+PUT http://{{host}}/api/v1/users/activate
+Content-Type: application/json
+
+{
+  "email": "luis@api.com",
+  "token": "8a93330764ad6f7a662bcdbae0a28a6ff1916e5c",
+  "password": "password"
+}
+
+###
+
+POST http://{{host}}/api/v1/users/login_check
+Content-Type: application/json
+
+{
+  "username": "luis@api.com",
+  "password": "new-password"
+}
+
+###
+
+PUT http://{{host}}/api/v1/users/e7d732a6-286e-4fc3-942f-4d0c7e92ff3d/change_password
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "oldPass": "new-password",
+  "newPass": "password"
+}
+
+###
+GET http://{{host}}/api/v1/users/29f37f9e-cb5f-4fe8-8b80-b3c736ac5ae3
+Accept: application/json
+Authorization: {{token}}
+
+###
