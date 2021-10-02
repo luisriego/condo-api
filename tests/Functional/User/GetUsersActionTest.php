@@ -22,9 +22,9 @@ class GetUsersActionTest extends FunctionalTestBase
         $response = self::$authenticatedClient->getResponse();
 
         self::assertEquals(JsonResponse::HTTP_OK, $response->getStatusCode());
+
         $responseData = \json_decode($response->getContent(), true);
-        self::assertArrayHasKey('user', $responseData);
-//        self::assertArrayHasKey('email', $responseData);
-//        self::assertArrayHasKey('token', $responseData);
+        self::assertArrayHasKey('email', $responseData);
+        self::assertArrayHasKey('token', $responseData);
     }
 }

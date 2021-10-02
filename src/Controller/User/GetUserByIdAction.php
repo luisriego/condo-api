@@ -17,6 +17,6 @@ class GetUserByIdAction extends ApiController
     {
         $user = $this->getUserByIdService->__invoke($id);
 
-        return $this->createResponse(['user' => $user->toArray()]);
+        return $this->createResponse($user->toArray());
     }
 }

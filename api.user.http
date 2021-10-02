@@ -13,7 +13,7 @@ Content-Type: application/json
 
 {
   "email": "santi2@api.com",
-  "token": "231ad5d87f012f8e5ed1ac2296b15841fb0cf3fc",
+  "token": "fdc624cf2d241928b0194f40b95b18e28310411b",
   "password": "password"
 }
 
@@ -36,5 +36,9 @@ Content-Type: application/json
   "oldPass": "password",
   "newPass": "nwe-password"
 }
+
+###
+GET http://{{host}}/api/v1/users/c92f7694-8511-4f18-85ee-9cff6cebfbc0
+Accept: application/json
 
 ###

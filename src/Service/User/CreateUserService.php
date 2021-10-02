@@ -5,6 +5,7 @@ namespace App\Service\User;
 use App\Entity\User;
 use App\Exception\User\UserAlreadyExistsException;
 use App\Repository\DoctrineUserRepository;
+use Doctrine\ORM\ORMException;
 
 class CreateUserService
 {
@@ -19,7 +20,13 @@ class CreateUserService
         }
 
         $user = new User($name, $email);
-        $this->userRepository->save($user);
+
+        try {
+            $this->userRepository->save($user);
+        } catch (ORMException $e) {
+            throw UserAlreadyExistsException::fromEmail($email);
+        }
+
 
         return $user;
     }

@@ -58,7 +58,7 @@ class User implements UserInterface
         $this->email = $email;
     }
 
-    public function getToken(): string
+    public function getToken(): ?string
     {
         return $this->token;
     }

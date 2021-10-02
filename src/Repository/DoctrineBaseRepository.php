@@ -36,10 +36,6 @@ abstract class DoctrineBaseRepository
 
     abstract protected static function entityClass(): string;
 
-    /**
-     * @throws OptimisticLockException
-     * @throws ORMException
-     */
     protected function saveEntity(object $entity): void
     {
         $this->getEntityManager()->persist($entity);
