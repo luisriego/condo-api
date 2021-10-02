@@ -2,8 +2,8 @@ POST http://{{host}}/api/v1/users/create
 Content-Type: application/json
 
 {
-  "name": "Santi",
-  "email": "santi2@api.com"
+  "name": "Luis",
+  "email": "luis@api.com"
 }
 
 ###
@@ -12,8 +12,8 @@ PUT http://{{host}}/api/v1/users/activate
 Content-Type: application/json
 
 {
-  "email": "santi2@api.com",
-  "token": "fdc624cf2d241928b0194f40b95b18e28310411b",
+  "email": "luis@api.com",
+  "token": "8a93330764ad6f7a662bcdbae0a28a6ff1916e5c",
   "password": "password"
 }
 
@@ -23,22 +23,24 @@ POST http://{{host}}/api/v1/users/login_check
 Content-Type: application/json
 
 {
-  "username": "santi2@api.com",
-  "password": "password"
+  "username": "luis@api.com",
+  "password": "new-password"
 }
 
 ###
 
-PUT http://{{host}}/api/v1/users/c92f7694-8511-4f18-85ee-9cff6cebfbc0/change_password
+PUT http://{{host}}/api/v1/users/e7d732a6-286e-4fc3-942f-4d0c7e92ff3d/change_password
 Content-Type: application/json
+Authorization: {{token}}
 
 {
-  "oldPass": "password",
-  "newPass": "nwe-password"
+  "oldPass": "new-password",
+  "newPass": "password"
 }
 
 ###
-GET http://{{host}}/api/v1/users/c92f7694-8511-4f18-85ee-9cff6cebfbc0
+GET http://{{host}}/api/v1/users/29f37f9e-cb5f-4fe8-8b80-b3c736ac5ae3
 Accept: application/json
+Authorization: {{token}}
 
 ###

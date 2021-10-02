@@ -7,7 +7,7 @@ namespace App\Controller\User;
 use App\Http\Response\ApiResponse;
 use App\Repository\DoctrineUserRepository;
 
-class GetUserAction
+class GetUsersAction
 {
     public function __construct(private DoctrineUserRepository $userRepository)
     {
