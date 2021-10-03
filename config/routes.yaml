@@ -34,6 +34,11 @@ api_login_check:
     controller: App\Controller\User\LoginCheckAction
     methods: [POST]
 
+api_upload_avatar:
+    path: /api/v1/users/{id}/upload_avatar
+    controller: App\Controller\User\UploadAvatar
+    methods: [POST]
+
 # Condo
 api_create_condo:
     path: /api/v1/condos/create
