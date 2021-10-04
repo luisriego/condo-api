@@ -17,8 +17,11 @@ class FileService
     public const DOCUMENT_INPUT_NAME = 'document';
     public const MEDIA_INPUT_NAME = 'media';
 
-    public function __construct(private FilesystemOperator $localStorage, private LoggerInterface $logger, string $mediaPath)
-    { }
+    public function __construct(
+        private FilesystemOperator $localStorage,
+        private LoggerInterface $logger,
+        string $mediaPath
+    ){ }
 
     /**
      * @throws FilesystemException

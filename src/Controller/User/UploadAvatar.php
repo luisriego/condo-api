@@ -8,6 +8,7 @@ use App\Entity\User;
 use App\Http\Response\ApiResponse;
 use App\Service\User\UploadAvatarService;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class UploadAvatar
 {
@@ -18,6 +19,6 @@ class UploadAvatar
     {
         $user = $this->uploadAvatarService->uploadAvatar($request, $user);
 
-        return new ApiResponse($user->toArray());
+        return new ApiResponse($user->toArray(), Response::HTTP_CREATED);
     }
 }
