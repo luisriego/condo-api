@@ -1,20 +1,20 @@
 # Read the documentation at https://github.com/thephpleague/flysystem-bundle/blob/master/docs/1-getting-started.md
 flysystem:
     storages:
-        default.storage:
-            adapter: 'aws'
-            options:
-                client: 'app.images.s3'
-                bucket: '%env(resolve:BUCKET)%'
-                prefix: '%env(resolve:PREFIX)%'
+#        default.storage:
+#            adapter: 'aws'
+#            options:
+#                client: 'app.images.s3'
+#                bucket: '%env(resolve:BUCKET)%'
+#                prefix: '%env(resolve:PREFIX)%'
         local.storage:
             adapter: 'local'
             options:
                 directory: '%kernel.project_dir%/public/storage'
 #                directory: '%kernel.project_dir%/var/storage'
-        cloudinary.storage:
-            adapter: 'cloudinary'
-            options:
-                client: 'app.images.s3'
-                bucket: '%env(resolve:BUCKET)%'
-                prefix: '%env(resolve:PREFIX)%'
+#        cloudinary.storage:
+#            adapter: 'cloudinary'
+#            options:
+#                client: 'app.images.s3'
+#                bucket: '%env(resolve:BUCKET)%'
+#                prefix: '%env(resolve:PREFIX)%'

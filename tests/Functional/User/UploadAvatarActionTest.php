@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class UploadAvatarServiceTest extends FunctionalTestBase
+class UploadAvatarActionTest extends FunctionalTestBase
 {
     private const ENDPOINT = '/api/v1/users';
 

@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class GetUsersActionTest extends FunctionalTestBase
 {
@@ -24,7 +25,17 @@ class GetUsersActionTest extends FunctionalTestBase
         self::assertEquals(JsonResponse::HTTP_OK, $response->getStatusCode());
 
         $responseData = \json_decode($response->getContent(), true);
+        self::assertEquals($this->getLuisId(), $responseData['id']);
         self::assertArrayHasKey('email', $responseData);
         self::assertArrayHasKey('token', $responseData);
+    }
+
+    public function testGetAnotherUserById(): void
+    {
+        self::$authenticatedClient->request(Request::METHOD_GET, \sprintf('%s/%s', self::ENDPOINT, $this->getAnotherId()));
+
+        $response = self::$authenticatedClient->getResponse();
+
+        self::assertEquals(Response::HTTP_INTERNAL_SERVER_ERROR, $response->getStatusCode());
     }
 }

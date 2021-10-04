@@ -6,13 +6,23 @@ health_check:
 # User
 api_user_get_all:
     path: /api/v1/users
-    controller: App\Controller\User\Get
-    methods: [ GET ]
+    controller: App\Controller\User\GetUsersAction
+    methods: [GET]
 
 api_user_get:
     path: /api/v1/users/{id}
     controller: App\Controller\User\GetUserByIdAction
-    methods: [ GET ]
+    methods: [GET]
+
+api_user_update:
+    path: /api/v1/users/{id}
+    controller: App\Controller\User\UpdateUserAction
+    methods: [PUT]
+
+api_user_delete:
+    path: /api/v1/users/{id}
+    controller: App\Controller\User\DeleteUserAction
+    methods: [DELETE]
 
 api_create_user:
     path: /api/v1/users/create

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\User;
 
+use App\Entity\User;
 use App\Http\Response\ApiResponse;
 use App\Repository\DoctrineUserRepository;
 
@@ -17,6 +18,10 @@ class GetUsersAction
     {
         $users = $this->userRepository->all();
 
-        return new ApiResponse($users);
+        $result = array_map(function (User $user): array {
+            return $user->toArray();
+        }, $users);
+
+        return new ApiResponse(['users' => $result]);
     }
 }

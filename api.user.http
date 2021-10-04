@@ -3,7 +3,7 @@ Content-Type: application/json
 
 {
   "name": "Luis",
-  "email": "luis@api.com"
+  "email": "luis16@api.com"
 }
 
 ###
@@ -12,8 +12,8 @@ PUT http://{{host}}/api/v1/users/activate
 Content-Type: application/json
 
 {
-  "email": "luis@api.com",
-  "token": "e53d3cc58c30d0dae954db473c1479b83b147a99",
+  "email": "luis16@api.com",
+  "token": "api.user#1",
   "password": "password"
 }
 
@@ -48,10 +48,20 @@ Authorization: {{token}}
 
 ###
 
-POST http://{{host}}/api/v1/users/29f37f9e-cb5f-4fe8-8b80-b3c736ac5ae3/upload_avatar
-Content-Type: multipart/form-data; boundary="avatar"
+GET http://{{host}}/api/v1/users
+Accept: application/json
 Authorization: {{token}}
 
---avatar
-Content-Disposition: form-data; name="avatar"; filename="test.pdf"
+###
+
+###
+
+PUT http://{{host}}/api/v1/users/1d011c12-2dcf-4f7d-9572-2410c26f0e1b
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "name": "Jose Luis"
+}
+
 ###

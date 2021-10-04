@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Tests\Functional;
 
 use App\Repository\DoctrineUserRepository;
-use App\Repository\UserRepository;
 use Doctrine\DBAL\Connection;
 use Hautelook\AliceBundle\PhpUnit\RecreateDatabaseTrait;
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
@@ -62,5 +61,10 @@ class FunctionalTestBase extends WebTestCase
     protected function getLuisId()
     {
         return self::initDBConnection()->executeQuery('SELECT id FROM user WHERE email = "luis@api.com"')->fetchOne();
+    }
+
+    protected function getAnotherId()
+    {
+        return self::initDBConnection()->executeQuery('SELECT id FROM user WHERE email = "another@api.com"')->fetchOne();
     }
 }

@@ -10,6 +10,7 @@ use App\Trait\TimestampableTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use JetBrains\PhpStorm\ArrayShape;
+use JetBrains\PhpStorm\Pure;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Uid\Uuid;
 
@@ -117,6 +118,12 @@ class User implements UserInterface
     public function isMemberOfCondo(Condo $condo): bool
     {
         return $this->condos->contains($condo);
+    }
+
+    #[Pure]
+    public function equals(User $user): bool
+    {
+        return $this->id === $user->getId();
     }
 
     #[ArrayShape(['id' => "string", 'name' => "string", 'email' => "string", 'avatar' => "null|string", 'token' => "null|string", 'active' => "false", 'createdOn' => "string", 'updatedOn' => "string"])]
