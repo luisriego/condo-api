@@ -39,6 +39,7 @@ class CreateCondoActionTest extends FunctionalTestBase
         ];
 
         self::$authenticatedClient->request(Request::METHOD_POST, self::ENDPOINT, [], [], [], \json_encode($payload));
+        self::$authenticatedClient->request(Request::METHOD_POST, self::ENDPOINT, [], [], [], \json_encode($payload));
 
         $response = self::$authenticatedClient->getResponse();
 

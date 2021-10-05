@@ -24,7 +24,7 @@ Content-Type: application/json
 
 {
   "username": "luis@api.com",
-  "password": "new-password"
+  "password": "password"
 }
 
 ###
@@ -39,7 +39,7 @@ Authorization: {{token}}
 }
 
 ###
-GET http://{{host}}/api/v1/users/29f37f9e-cb5f-4fe8-8b80-b3c736ac5ae3
+GET http://{{host}}/api/v1/users/a154c8a5-bb2e-4f03-9720-0ac50ec08f12
 Accept: application/json
 Authorization: {{token}}
 
