@@ -26,3 +26,27 @@ Happy coding!
 - Run `sf d:m:m -n --env=test` to apply migrations on test enviroment
 
 If .pem has access problems: 'chmod 644 public.pem private.pem'
+
+chmod -R 777 storage/
+
+```
+POST http://example.com/api/upload HTTP/1.1
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
+Content-Disposition: form-data; name="first"; filename="input.txt"
+
+// The 'input.txt' file will be uploaded
+< ./fixtures/input.txt
+
+--boundary
+Content-Disposition: form-data; name="second"; filename="input-second.txt"
+
+// A temporary 'input-second.txt' file with the 'Text' content will be created and uploaded
+Text
+--boundary
+Content-Disposition: form-data; name="third";
+
+// The 'input.txt' file contents will be sent as plain text.
+< ./input.txt --boundary--
+```

@@ -69,16 +69,13 @@ Authorization: {{token}}
 ###
 POST http://{{host}}/api/v1/users/a154c8a5-bb2e-4f03-9720-0ac50ec08f12/upload_avatar
 Accept: */*
-Content-Type: multipart/form-data; boundary="abcd"
+Content-Type: multipart/form-data; boundary=boundary
 Authorization: {{token}}
 
---abcd
-Content-Disposition: form-data; name="json_string"
+--boundary
+Content-Disposition: form-data; name="avatar"; filename="avatar.jpg"
 
-{"id”:”1234”,”message”:”here are your files”}
---abcd
-Content-Disposition: form-data; name="file1"; filename="test.pdf"
-
-< /../fixtures/avatar.jpg
+// The 'avatar.jpg' file will be uploaded
+< ./fixtures/avatar.jpg
 
 ###
