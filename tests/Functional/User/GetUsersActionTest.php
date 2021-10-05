@@ -5,9 +5,6 @@ declare(strict_types=1);
 namespace App\Tests\Functional\User;
 
 use App\Tests\Functional\FunctionalTestBase;
-use Hautelook\AliceBundle\PhpUnit\RecreateDatabaseTrait;
-use Symfony\Bundle\FrameworkBundle\KernelBrowser;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 

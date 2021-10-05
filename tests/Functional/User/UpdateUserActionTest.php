@@ -31,4 +31,22 @@ class UpdateUserActionTest extends FunctionalTestBase
         self::assertEquals(Response::HTTP_OK, $response->getStatusCode());
         self::assertEquals('Jose Luis', $responseData['name']);
     }
+
+    public function testUpdateUserFailNoName(): void
+    {
+        $payload = [
+            'name' => null
+        ];
+
+        self::$authenticatedClient->request(
+            Request::METHOD_PUT,
+            \sprintf('%s/%s', self::ENDPOINT, $this->getLuisId()),
+            [], [], [],
+            \json_encode($payload)
+        );
+
+        $response = self::$authenticatedClient->getResponse();
+
+        self::assertEquals(Response::HTTP_BAD_REQUEST, $response->getStatusCode());
+    }
 }
