@@ -3,7 +3,7 @@ Content-Type: application/json
 
 {
   "name": "Luis",
-  "email": "luis16@api.com"
+  "email": "luis@api.com"
 }
 
 ###
@@ -12,8 +12,8 @@ PUT http://{{host}}/api/v1/users/activate
 Content-Type: application/json
 
 {
-  "email": "luis16@api.com",
-  "token": "api.user#1",
+  "email": "luis@api.com",
+  "token": "7b4ca0f335e8b305865924971eb862d779d5654c",
   "password": "password"
 }
 
@@ -40,7 +40,7 @@ Authorization: {{token}}
 
 ###
 
-GET http://{{host}}/api/v1/users/29f37f9e-cb5f-4fe8-8b80-b3c736ac5ae3
+GET http://{{host}}/api/v1/users/a154c8a5-bb2e-4f03-9720-0ac50ec08f12
 Accept: application/json
 Authorization: {{token}}
 
@@ -63,5 +63,22 @@ Authorization: {{token}}
 {
   "name": "Jose Luis"
 }
+
+###
+
+###
+POST http://{{host}}/api/v1/users/a154c8a5-bb2e-4f03-9720-0ac50ec08f12/upload_avatar
+Accept: */*
+Content-Type: multipart/form-data; boundary="abcd"
+Authorization: {{token}}
+
+--abcd
+Content-Disposition: form-data; name="json_string"
+
+{"id”:”1234”,”message”:”here are your files”}
+--abcd
+Content-Disposition: form-data; name="file1"; filename="test.pdf"
+
+< /../fixtures/avatar.jpg
 
 ###

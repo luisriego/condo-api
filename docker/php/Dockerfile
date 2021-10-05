@@ -6,7 +6,6 @@ ARG UID
 RUN adduser -u ${UID} --disabled-password --gecos "" appuser
 RUN mkdir /home/appuser/.ssh
 RUN chown -R appuser:appuser /home/appuser/
-RUN chown -R www-data:www-data /public/storage/
 RUN echo "StrictHostKeyChecking no" >> /home/appuser/.ssh/config
 RUN echo "export COLUMNS=300" >> /home/appuser/.bashrc
 RUN echo "alias sf=/appdata/www/bin/console" >> /home/appuser/.bashrc
