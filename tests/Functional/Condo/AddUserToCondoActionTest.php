@@ -23,4 +23,28 @@ class AddUserToCondoActionTest extends CondoTestBase
         $responseData = \json_decode($response->getContent(), true);
         self::assertArrayHasKey('users', $responseData);
     }
+
+    public function testAddUserToCondosByIdFailCondoNotFound(): void
+    {
+        self::$authenticatedClient->request(
+            Request::METHOD_PUT,
+            \sprintf('%s/%s/user/%s', $this->endpoint, 'wrong-condo-id', $this->getAnotherId())
+        );
+
+        $response = self::$authenticatedClient->getResponse();
+
+        self::assertEquals(Response::HTTP_NOT_FOUND, $response->getStatusCode());
+    }
+
+    public function testAddUserToCondosByIdFailUserNotFound(): void
+    {
+        self::$authenticatedClient->request(
+            Request::METHOD_PUT,
+            \sprintf('%s/%s/user/%s', $this->endpoint, $this->getLuisCondoId(), 'wrong_id')
+        );
+
+        $response = self::$authenticatedClient->getResponse();
+
+        self::assertEquals(Response::HTTP_NOT_FOUND, $response->getStatusCode());
+    }
 }
