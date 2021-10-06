@@ -12,8 +12,8 @@ PUT http://{{host}}/api/v1/users/activate
 Content-Type: application/json
 
 {
-  "email": "luis@api.com",
-  "token": "8a93330764ad6f7a662bcdbae0a28a6ff1916e5c",
+  "email": "pepelu@api.com",
+  "token": "cc4185b02a6aec6ffffc3d3b9610277e20f272b9",
   "password": "password"
 }
 

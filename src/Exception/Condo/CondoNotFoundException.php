@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Exception\Condo;
 
-class CondoNotFoundException extends \DomainException
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
+class CondoNotFoundException extends NotFoundHttpException
 {
     public static function fromCnpj(string $cnpj): self
     {

@@ -55,6 +55,11 @@ api_user_get_all:
     methods: [GET]
 
 # Condo
+api_condo_add_user:
+    path: /api/v1/condos/{condoId}/user/{userId}
+    controller: App\Controller\Condo\AddUserToCondoAction
+    methods: [PUT]
+
 api_condo_create:
     path: /api/v1/condos/create
     controller: App\Controller\Condo\CreateCondoAction

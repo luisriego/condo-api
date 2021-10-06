@@ -63,4 +63,9 @@ class FunctionalTestBase extends WebTestCase
     {
         return self::initDBConnection()->executeQuery('SELECT id FROM user WHERE email = "luis@api.com"')->fetchOne();
     }
+
+    protected function getAnotherId()
+    {
+        return self::initDBConnection()->executeQuery('SELECT id FROM user WHERE email = "another@api.com"')->fetchOne();
+    }
 }
