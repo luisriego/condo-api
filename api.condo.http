@@ -15,6 +15,12 @@ Authorization: {{token}}
 
 ###
 
+DELETE http://{{host}}/api/v1/condos/57d2be11-c65c-4f73-baeb-8a0d1b67f4c6/user/08446b10-28f8-4f5d-8bff-a2b17a5f9c72
+Content-Type: application/json
+Authorization: {{token}}
+
+###
+
 #POST http://{{host}}/api/v1/users/login_check
 #Content-Type: application/json
 #

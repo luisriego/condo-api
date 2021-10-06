@@ -60,6 +60,11 @@ api_condo_add_user:
     controller: App\Controller\Condo\AddUserToCondoAction
     methods: [PUT]
 
+api_condo_remove_user:
+    path: /api/v1/condos/{condoId}/user/{userId}
+    controller: App\Controller\Condo\RemoveUserFromCondoAction
+    methods: [DELETE]
+
 api_condo_create:
     path: /api/v1/condos/create
     controller: App\Controller\Condo\CreateCondoAction

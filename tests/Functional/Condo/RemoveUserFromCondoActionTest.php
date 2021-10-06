@@ -7,13 +7,13 @@ namespace App\Tests\Functional\Condo;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class AddUserToCondoActionTest extends CondoTestBase
+class RemoveUserFromCondoActionTest extends CondoTestBase
 {
-    public function testAddUserToCondosById(): void
+    public function testRemoveUserFromCondosById(): void
     {
         self::$authenticatedClient->request(
-            Request::METHOD_PUT,
-            \sprintf('%s/%s/user/%s', $this->endpoint, $this->getLuisCondoId(), $this->getAnotherId())
+            Request::METHOD_DELETE,
+            \sprintf('%s/%s/user/%s', $this->endpoint, $this->getLuisCondoId(), $this->getLuisId())
         );
 
         $response = self::$authenticatedClient->getResponse();
@@ -21,10 +21,10 @@ class AddUserToCondoActionTest extends CondoTestBase
         self::assertEquals(Response::HTTP_OK, $response->getStatusCode());
 
         $responseData = \json_decode($response->getContent(), true);
-        self::assertCount(2, $responseData['users']);
+        self::assertCount(0, $responseData['users']);
     }
 
-    public function testAddUserToCondosByIdFailCondoNotFound(): void
+    public function testRemoveUserFromCondosByIdFailCondoNotFound(): void
     {
         self::$authenticatedClient->request(
             Request::METHOD_PUT,
@@ -36,7 +36,7 @@ class AddUserToCondoActionTest extends CondoTestBase
         self::assertEquals(Response::HTTP_NOT_FOUND, $response->getStatusCode());
     }
 
-    public function testAddUserToCondosByIdFailUserNotFound(): void
+    public function testRemoveUserFromCondosByIdFailUserNotFound(): void
     {
         self::$authenticatedClient->request(
             Request::METHOD_PUT,
