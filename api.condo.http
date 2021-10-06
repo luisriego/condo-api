@@ -30,15 +30,14 @@ Authorization: {{token}}
 #}
 #
 ####
-#
-#PUT http://{{host}}/api/v1/users/e7d732a6-286e-4fc3-942f-4d0c7e92ff3d/change_password
-#Content-Type: application/json
-#Authorization: {{token}}
-#
-#{
-#  "oldPass": "new-password",
-#  "newPass": "password"
-#}
+
+PUT http://{{host}}/api/v1/condos/fc6c100c-b24a-4f54-822a-1c1d8e7a7829
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "fantasyName": "Condominio do Edificio Fantasy"
+}
 
 ###
 

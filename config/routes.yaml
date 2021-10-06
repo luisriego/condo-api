@@ -74,3 +74,8 @@ api_condo_get:
     path: /api/v1/condos/{id}
     controller: App\Controller\Condo\GetCondoByIdAction
     methods: [GET]
+
+api_condo_update:
+    path: /api/v1/condos/{id}
+    controller: App\Controller\Condo\UpdateCondoAction
+    methods: [PUT]
