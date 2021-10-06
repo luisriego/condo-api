@@ -17,6 +17,10 @@ class GetUsersAction
     {
         $users = $this->userRepository->all();
 
-        return new ApiResponse($users);
+        $result = array_map(function (User $user): array {
+            return $user->toArray();
+        }, $users);
+
+        return new ApiResponse(['users' => $result]);
     }
 }

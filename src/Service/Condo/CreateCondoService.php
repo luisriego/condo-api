@@ -13,8 +13,7 @@ use App\Repository\DoctrineUserRepository;
 class CreateCondoService
 {
     public function __construct(
-        private DoctrineCondoRepository $condoRepository,
-        private DoctrineUserRepository $userRepository
+        private DoctrineCondoRepository $condoRepository
     ) { }
 
     public function __invoke(string $cnpj, string $fantasyName, User $user): Condo
@@ -24,9 +23,10 @@ class CreateCondoService
         }
 
         $condo = new Condo($cnpj, $fantasyName);
+        $condo->addUser($user);
         $this->condoRepository->save($condo);
-        $user->addCondo($condo);
-        $this->userRepository->save($user);
+//        $user->addCondo($condo);
+//        $this->userRepository->save($user);
 
         return $condo;
     }

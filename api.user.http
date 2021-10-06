@@ -39,6 +39,7 @@ Authorization: {{token}}
 }
 
 ###
+
 GET http://{{host}}/api/v1/users/a154c8a5-bb2e-4f03-9720-0ac50ec08f12
 Accept: application/json
 Authorization: {{token}}

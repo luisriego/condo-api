@@ -1,0 +1,7 @@
+App\Entity\Condo:
+  Condo-1:
+    __construct:
+      cnpj: '12345678909876'
+      fantasyName: Luis Condo
+    addUser: '@User-1'
+    isActive: true

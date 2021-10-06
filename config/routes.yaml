@@ -34,6 +34,11 @@ api_user_get:
     controller: App\Controller\User\GetUserByIdAction
     methods: [GET]
 
+api_user_get_condos:
+    path: /api/v1/users/{id}/condo
+    controller: App\Controller\User\GetCondoByUserIdAction
+    methods: [GET]
+
 api_user_update:
     path: /api/v1/users/{id}
     controller: App\Controller\User\UpdateUserAction
@@ -50,7 +55,12 @@ api_user_get_all:
     methods: [GET]
 
 # Condo
-api_create_condo:
+api_condo_create:
     path: /api/v1/condos/create
     controller: App\Controller\Condo\CreateCondoAction
     methods: [POST]
+
+api_condo_get:
+    path: /api/v1/condos/{id}
+    controller: App\Controller\Condo\GetCondoByIdAction
+    methods: [GET]

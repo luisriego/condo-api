@@ -38,10 +38,11 @@ Authorization: {{token}}
 #  "oldPass": "new-password",
 #  "newPass": "password"
 #}
-#
-####
-#GET http://{{host}}/api/v1/users/29f37f9e-cb5f-4fe8-8b80-b3c736ac5ae3
-#Accept: application/json
-#Authorization: {{token}}
-#
-####
+
+###
+
+GET http://{{host}}/api/v1/condos/fc6c100c-b24a-4f54-822a-1c1d8e7a7829
+Accept: application/json
+Authorization: {{token}}
+
+###
