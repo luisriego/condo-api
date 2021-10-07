@@ -33,4 +33,22 @@ class UpdateCondoActionTest extends CondoTestBase
         $responseData = \json_decode($response->getContent(), true);
         self::assertEquals('Condominio do Edifício Matisse', $responseData['fantasyName']);
     }
+
+    public function testUpdateCondoFailNotBelong(): void
+    {
+        $payload = [
+            'fantasyName' => 'Condominio do Edifício Matisse'
+        ];
+
+        self::$anotherAuthenticatedClient->request(
+            Request::METHOD_PUT,
+            \sprintf('%s/%s', $this->endpoint, $this->getLuisCondoId()),
+            [], [], [],
+            \json_encode($payload)
+        );
+
+        $response = self::$anotherAuthenticatedClient->getResponse();
+
+        self::assertEquals(Response::HTTP_FORBIDDEN, $response->getStatusCode());
+    }
 }
