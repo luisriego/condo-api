@@ -34,8 +34,8 @@ Content-Type: application/json
 Authorization: {{token}}
 
 {
-  "oldPass": "new-password",
-  "newPass": "password"
+  "oldPass": "password",
+  "newPass": "new-password"
 }
 
 ###
@@ -44,4 +44,14 @@ GET http://{{host}}/api/v1/users/a154c8a5-bb2e-4f03-9720-0ac50ec08f12
 Accept: application/json
 Authorization: {{token}}
 
+###
+
+###
+
+POST http://{{host}}/api/v1/users/29f37f9e-cb5f-4fe8-8b80-b3c736ac5ae3/upload_avatar
+Content-Type: multipart/form-data; boundary="avatar"
+Authorization: {{token}}
+
+--avatar
+Content-Disposition: form-data; name="avatar"; filename="test.pdf"
 ###

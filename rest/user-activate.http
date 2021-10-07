@@ -1,8 +1,0 @@
-PUT  http://localhost:1000/api/v1/users/activate HTTP/1.1
-content-type: application/json
-
-{
-    "email": "santi@api.com",
-    "token": "768e0b83c638625765975f2d2800385af33cd9cc",
-    "password": "password"
-}
