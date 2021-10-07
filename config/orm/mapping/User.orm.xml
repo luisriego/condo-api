@@ -6,7 +6,8 @@
         <field name="name" length="50" />
         <field name="email" length="50" />
         <field name="password" length="150" nullable="true" />
-        <field name="token" length="50" nullable="true"/>
+        <field name="avatar" length="255" nullable="true" />
+        <field name="token" length="40" nullable="true"/>
         <field name="isActive" type="boolean" />
         <field name="createdOn" type="datetime_immutable" />
         <field name="updatedOn" type="datetime" />

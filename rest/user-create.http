@@ -1,7 +1,0 @@
-POST  http://localhost:1000/api/v1/users/create HTTP/1.1
-content-type: application/json
-
-{
-	"name": "Santi",
-	"email": "santi@api.com"
-}

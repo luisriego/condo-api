@@ -4,6 +4,14 @@ services:
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        bind:
+            $mediaPath: '%env(resolve:SUBDOMAIN)%'
+            $documentPath: '%env(resolve:SUBDOMAIN_LOCAL_DOCUMENT)%'
+            $imagePath: '%env(resolve:SUBDOMAIN_LOCAL_MEDIA)%'
+#            $facebookClientId: '%env(resolve:FACEBOOK_CLIENT)%'
+#            $facebookSecret: '%env(resolve:FACEBOOK_SECRET)%'
+#            $facebookGraphVersion: '%env(resolve:FACEBOOK_GRAPH_VERSION)%'
+#            $googleCaptchaSecret: '%env(resolve:GOOGLE_CAPTCHA_SECRET)%'
 
     App\:
         resource: '../src/'
@@ -24,3 +32,13 @@ services:
 #    App\Listener\JWTCreatedListener:
 #        tags:
 #            - { name: kernel.event_listener, event: lexik_jwt_authentication.on_jwt_created, method: onJWTCreated }
+
+    app.images.s3:
+        class: Aws\S3\S3Client
+        arguments:
+            - version: '%env(resolve:VERSION)%'
+              region: '%env(resolve:REGION)%'
+              endpoint: '%env(resolve:ENDPOINT)%'
+              credentials:
+                  key: '%env(resolve:KEY)%'
+                  secret: '%env(resolve:SECRET)%'

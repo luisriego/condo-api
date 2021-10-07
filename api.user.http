@@ -34,8 +34,8 @@ Content-Type: application/json
 Authorization: {{token}}
 
 {
-  "oldPass": "new-password",
-  "newPass": "password"
+  "oldPass": "password",
+  "newPass": "new-password"
 }
 
 ###

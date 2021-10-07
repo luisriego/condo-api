@@ -22,6 +22,7 @@ class User implements UserInterface
 
     private string $name;
     private string $email;
+    private ?string $avatar;
     private ?string $token;
     private ?string $password;
     private Collection $condos;
@@ -32,6 +33,7 @@ class User implements UserInterface
         $this->name = $name;
         $this->email = $email;
         $this->password = null;
+        $this->avatar = null;
         $this->token = \sha1(\uniqid());
         $this->isActive = false;
         $this->condos = new ArrayCollection();
@@ -79,6 +81,16 @@ class User implements UserInterface
         $this->password = $password;
     }
 
+    public function getAvatar(): ?string
+    {
+        return $this->avatar;
+    }
+
+    public function setAvatar(?string $avatar): void
+    {
+        $this->avatar = $avatar;
+    }
+
     /**
      * @return ArrayCollection|Collection
      */
@@ -121,6 +133,7 @@ class User implements UserInterface
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
+            'avatar' => $this->avatar,
             'token' => $this->token,
             'active' => $this->isActive,
             'createdOn' => $this->createdOn->format(\DateTime::RFC3339),
