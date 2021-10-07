@@ -8,7 +8,6 @@ use App\Entity\User;
 use App\Http\DTO\ChangePasswordRequest;
 use App\Http\Response\ApiResponse;
 use App\Service\User\ChangePasswordService;
-use Symfony\Component\HttpFoundation\Request;
 
 class ChangePasswordAction
 {

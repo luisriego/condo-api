@@ -9,14 +9,14 @@ use App\Exception\User\UserHasNotAuthorizationException;
 use App\Exception\User\UserNotFoundException;
 use App\Repository\DoctrineCondoRepository;
 use App\Repository\DoctrineUserRepository;
-use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 class RemoveUserFromCondoService
 {
     public function __construct(
         private DoctrineCondoRepository $condoRepository,
         private DoctrineUserRepository $userRepository
-    ) { }
+    ) {
+    }
 
     public function __invoke(string $condoId, string $userId, User $userLogged): Condo
     {

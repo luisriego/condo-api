@@ -8,13 +8,13 @@ use App\Entity\Condo;
 use App\Entity\User;
 use App\Exception\Condo\CondoAlreadyExistsException;
 use App\Repository\DoctrineCondoRepository;
-use App\Repository\DoctrineUserRepository;
 
 class CreateCondoService
 {
     public function __construct(
         private DoctrineCondoRepository $condoRepository
-    ) { }
+    ) {
+    }
 
     public function __invoke(string $cnpj, string $fantasyName, User $user): Condo
     {

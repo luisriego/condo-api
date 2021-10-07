@@ -15,7 +15,8 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 class UserArgumentResolver implements ArgumentValueResolverInterface
 {
     public function __construct(private TokenStorageInterface $tokenStorage, private DoctrineUserRepository $userRepository)
-    { }
+    {
+    }
 
     public function supports(Request $request, ArgumentMetadata $argument): bool
     {
@@ -25,7 +26,7 @@ class UserArgumentResolver implements ArgumentValueResolverInterface
 
         $token = $this->tokenStorage->getToken();
 
-        if (!$token instanceof  TokenInterface) {
+        if (!$token instanceof TokenInterface) {
             return false;
         }
 
