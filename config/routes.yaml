@@ -4,35 +4,55 @@ health_check:
     methods: [GET]
 
 # User
-api_user_get_all:
-    path: /api/v1/users
-    controller: App\Controller\User\Get
-    methods: [ GET ]
-
-api_user_get:
-    path: /api/v1/users/{id}
-    controller: App\Controller\User\GetUserByIdAction
-    methods: [ GET ]
+api_activate_user:
+    path: /api/v1/users/activate
+    controller: App\Controller\User\ActivateUserAction
+    methods: [PUT]
 
 api_create_user:
     path: /api/v1/users/create
     controller: App\Controller\User\CreateUserAction
     methods: [POST]
 
-api_activate_user:
-    path: /api/v1/users/activate
-    controller: App\Controller\User\ActivateUserAction
-    methods: [PUT]
+api_login_check:
+    path: /api/v1/users/login_check
+    controller: App\Controller\User\LoginCheckAction
+    methods: [POST]
+
+#api_upload_avatar:
+#    path: /api/v1/users/{id}/upload_avatar
+#    controller: App\Controller\User\UploadAvatar
+#    methods: [POST]
 
 api_change_password:
     path: /api/v1/users/{id}/change_password
     controller: App\Controller\User\ChangePasswordAction
     methods: [PUT]
 
-api_login_check:
-    path: /api/v1/users/login_check
-    controller: App\Controller\User\LoginCheckAction
-    methods: [POST]
+api_user_get:
+    path: /api/v1/users/{id}
+    controller: App\Controller\User\GetUserByIdAction
+    methods: [GET]
+
+api_user_get_condos:
+    path: /api/v1/users/{id}/condo
+    controller: App\Controller\User\GetCondoByUserIdAction
+    methods: [GET]
+
+api_user_update:
+    path: /api/v1/users/{id}
+    controller: App\Controller\User\UpdateUserAction
+    methods: [PUT]
+
+api_user_delete:
+    path: /api/v1/users/{id}
+    controller: App\Controller\User\DeleteUserAction
+    methods: [DELETE]
+
+api_user_get_all:
+    path: /api/v1/users
+    controller: App\Controller\User\GetUsersAction
+    methods: [GET]
 
 api_upload_avatar:
     path: /api/v1/users/{id}/upload_avatar
@@ -40,7 +60,32 @@ api_upload_avatar:
     methods: [POST]
 
 # Condo
-api_create_condo:
+api_condo_add_user:
+    path: /api/v1/condos/{condoId}/user/{userId}
+    controller: App\Controller\Condo\AddUserToCondoAction
+    methods: [PUT]
+
+api_condo_remove_user:
+    path: /api/v1/condos/{condoId}/user/{userId}
+    controller: App\Controller\Condo\RemoveUserFromCondoAction
+    methods: [DELETE]
+
+api_condo_create:
     path: /api/v1/condos/create
     controller: App\Controller\Condo\CreateCondoAction
     methods: [POST]
+
+api_condo_delete:
+    path: /api/v1/condos/{id}
+    controller: App\Controller\Condo\RemoveCondoAction
+    methods: [DELETE]
+
+api_condo_get:
+    path: /api/v1/condos/{id}
+    controller: App\Controller\Condo\GetCondoByIdAction
+    methods: [GET]
+
+api_condo_update:
+    path: /api/v1/condos/{id}
+    controller: App\Controller\Condo\UpdateCondoAction
+    methods: [PUT]

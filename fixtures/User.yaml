@@ -5,3 +5,9 @@ App\Entity\User:
       email: luis@api.com
     password: password
     isActive: true
+  User-another:
+    __construct:
+      name: Another
+      email: another@api.com
+    password: password
+    isActive: true

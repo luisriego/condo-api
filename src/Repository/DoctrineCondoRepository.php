@@ -13,9 +13,9 @@ class DoctrineCondoRepository extends DoctrineBaseRepository
         return Condo::class;
     }
 
-    public function findOneById(string $id): ?Condo
+    public function findOneByIdIfActive(string $id): ?Condo
     {
-        return $this->objectRepository->find($id);
+        return $this->objectRepository->findOneBy(['id' => $id, 'isActive' => true]);
     }
 
     public function findOneByCnpj(string $cnpj): ?Condo

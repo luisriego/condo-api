@@ -13,7 +13,16 @@
             <unique-constraint columns="cnpj" name="U_condo_cnpj"/>
         </unique-constraints>
 
-        <many-to-many field="users" mapped-by="condos" target-entity="App\Entity\User"/>
+        <many-to-many field="users" inversed-by="condos" target-entity="App\Entity\User">
+            <join-table name="user_condo">
+                <join-columns>
+                    <join-column name="condo_id" />
+                </join-columns>
+                <inverse-join-columns>
+                    <join-column name="user_id" />
+                </inverse-join-columns>
+            </join-table>
+        </many-to-many>
 
         <lifecycle-callbacks>
             <lifecycle-callback type="preUpdate" method="markAsUpdated"/>

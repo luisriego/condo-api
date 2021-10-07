@@ -79,7 +79,7 @@ class Condo
         return $this->users->contains($user);
     }
 
-    #[ArrayShape(['id' => 'string', 'fantasyName' => 'string', 'cnpj' => 'string', 'active' => 'false', 'createdOn' => 'string', 'updatedOn' => 'string'])]
+    #[ArrayShape(['id' => "string", 'fantasyName' => "string", 'cnpj' => "string", 'active' => "false", 'createdOn' => "string", 'updatedOn' => "string", 'users' => "array[]"])]
     public function toArray(): array
     {
         return [
@@ -89,6 +89,9 @@ class Condo
             'active' => $this->isActive,
             'createdOn' => $this->createdOn->format(\DateTime::RFC3339),
             'updatedOn' => $this->updatedOn->format(\DateTime::RFC3339),
+            'users' => array_map(function (User $user): array {
+                return $user->toArray();
+            }, $this->users->toArray()),
         ];
     }
 }

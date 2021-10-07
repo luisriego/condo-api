@@ -16,16 +16,7 @@
             <unique-constraint columns="email" name="U_user_email"/>
         </unique-constraints>
 
-        <many-to-many field="condos" inversed-by="users" target-entity="App\Entity\Condo">
-            <join-table name="user_condo">
-                <join-columns>
-                    <join-column name="user_id" />
-                </join-columns>
-                <inverse-join-columns>
-                    <join-column name="condo_id" />
-                </inverse-join-columns>
-            </join-table>
-        </many-to-many>
+        <many-to-many field="condos" mapped-by="users" target-entity="App\Entity\Condo"/>
 
         <lifecycle-callbacks>
             <lifecycle-callback type="preUpdate" method="markAsUpdated"/>

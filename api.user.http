@@ -12,8 +12,8 @@ PUT http://{{host}}/api/v1/users/activate
 Content-Type: application/json
 
 {
-  "email": "luis@api.com",
-  "token": "e53d3cc58c30d0dae954db473c1479b83b147a99",
+  "email": "pepelu@api.com",
+  "token": "cc4185b02a6aec6ffffc3d3b9610277e20f272b9",
   "password": "password"
 }
 
@@ -40,7 +40,7 @@ Authorization: {{token}}
 
 ###
 
-GET http://{{host}}/api/v1/users/29f37f9e-cb5f-4fe8-8b80-b3c736ac5ae3
+GET http://{{host}}/api/v1/users/a154c8a5-bb2e-4f03-9720-0ac50ec08f12
 Accept: application/json
 Authorization: {{token}}
 

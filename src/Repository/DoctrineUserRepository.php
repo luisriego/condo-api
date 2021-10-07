@@ -52,6 +52,15 @@ class DoctrineUserRepository extends DoctrineBaseRepository
         return $this->objectRepository->findOneBy(['email' => $email]);
     }
 
+    public function findOneByIdOrFail(string $id): ?User
+    {
+        if (null === $user = $this->objectRepository->findOneBy(['id' => $id, 'isActive' => true])) {
+            throw UserNotFoundException::fromId($id);
+        }
+
+        return $user;
+    }
+
     public function findOneByEmailOrFail(string $email): ?User
     {
         if (null === $user = $this->objectRepository->findOneBy(['email' => $email, 'isActive' => true])) {

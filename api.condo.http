@@ -1,0 +1,48 @@
+POST http://{{host}}/api/v1/condos/create
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "cnpj": "12345678901234",
+  "fantasyName": "Condominio Fantasy"
+}
+
+###
+# Add user to Condo
+PUT http://{{host}}/api/v1/condos/57d2be11-c65c-4f73-baeb-8a0d1b67f4c6/user/08446b10-28f8-4f5d-8bff-a2b17a5f9c72
+Content-Type: application/json
+Authorization: {{token}}
+
+###
+
+DELETE http://{{host}}/api/v1/condos/57d2be11-c65c-4f73-baeb-8a0d1b67f4c6/user/a154c8a5-bb2e-4f03-9720-0ac50ec08f12
+Content-Type: application/json
+Authorization: {{token}}
+
+###
+
+#POST http://{{host}}/api/v1/users/login_check
+#Content-Type: application/json
+#
+#{
+#  "username": "luis@api.com",
+#  "password": "new-password"
+#}
+#
+####
+
+PUT http://{{host}}/api/v1/condos/fc6c100c-b24a-4f54-822a-1c1d8e7a7829
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "fantasyName": "Condominio do Edificio Fantasy"
+}
+
+###
+
+GET http://{{host}}/api/v1/condos/fc6c100c-b24a-4f54-822a-1c1d8e7a7829
+Accept: application/json
+Authorization: {{token}}
+
+###
