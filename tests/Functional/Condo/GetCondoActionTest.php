@@ -36,4 +36,16 @@ class GetCondoActionTest extends CondoTestBase
 
         self::assertEquals(Response::HTTP_NOT_FOUND, $response->getStatusCode());
     }
+
+    public function testGetCondosByIdFailUnauthorized(): void
+    {
+        self::$anotherAuthenticatedClient->request(
+            Request::METHOD_GET,
+            \sprintf('%s/%s', $this->endpoint, $this->getLuisCondoId())
+        );
+
+        $response = self::$anotherAuthenticatedClient->getResponse();
+
+        self::assertEquals(Response::HTTP_FORBIDDEN, $response->getStatusCode());
+    }
 }
