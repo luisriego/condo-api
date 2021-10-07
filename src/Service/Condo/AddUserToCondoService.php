@@ -13,9 +13,10 @@ class AddUserToCondoService
     public function __construct(
         private DoctrineCondoRepository $condoRepository,
         private DoctrineUserRepository $userRepository
-    ) { }
+    ) {
+    }
 
-    public function __invoke(string $condoId, string $userId) :Condo
+    public function __invoke(string $condoId, string $userId): Condo
     {
         if (null === $condo = $this->condoRepository->findOneByIdIfActive($condoId)) {
             throw CondoNotFoundException::fromId($condoId);

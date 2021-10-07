@@ -45,13 +45,9 @@ Accept: application/json
 Authorization: {{token}}
 
 ###
-
-###
-
-POST http://{{host}}/api/v1/users/29f37f9e-cb5f-4fe8-8b80-b3c736ac5ae3/upload_avatar
-Content-Type: multipart/form-data; boundary="avatar"
+# Warning!! Remove this endpoint in production or implement ROLES will be necessary.
+GET http://{{host}}/api/v1/users
+Accept: application/json
 Authorization: {{token}}
 
---avatar
-Content-Disposition: form-data; name="avatar"; filename="test.pdf"
 ###

@@ -27,7 +27,6 @@ class CreateUserService
             throw UserAlreadyExistsException::fromEmail($email);
         }
 
-
         return $user;
     }
 }

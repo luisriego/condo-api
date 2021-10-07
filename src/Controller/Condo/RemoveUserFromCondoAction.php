@@ -8,7 +8,6 @@ use App\Service\Condo\RemoveUserFromCondoService;
 
 class RemoveUserFromCondoAction
 {
-
     public function __construct(private RemoveUserFromCondoService $removeUserFromCondoService)
     {
     }

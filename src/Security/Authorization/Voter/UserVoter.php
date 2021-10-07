@@ -36,7 +36,7 @@ class UserVoter extends Voter
         return [
             self::USER_READ,
             self::USER_UPDATE,
-            self::USER_DELETE
+            self::USER_DELETE,
         ];
     }
 }

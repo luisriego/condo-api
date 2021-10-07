@@ -79,7 +79,7 @@ class Condo
         return $this->users->contains($user);
     }
 
-    #[ArrayShape(['id' => "string", 'fantasyName' => "string", 'cnpj' => "string", 'active' => "false", 'createdOn' => "string", 'updatedOn' => "string", 'users' => "array[]"])]
+    #[ArrayShape(['id' => 'string', 'fantasyName' => 'string', 'cnpj' => 'string', 'active' => 'false', 'createdOn' => 'string', 'updatedOn' => 'string', 'users' => 'array[]'])]
     public function toArray(): array
     {
         return [

@@ -13,7 +13,8 @@ use App\Repository\DoctrineCondoRepository;
 class UpdateCondoService
 {
     public function __construct(private DoctrineCondoRepository $condoRepository)
-    { }
+    {
+    }
 
     public function __invoke(string $name, string $id, User $user): Condo
     {
