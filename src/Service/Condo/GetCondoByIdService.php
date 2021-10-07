@@ -7,6 +7,7 @@ namespace App\Service\Condo;
 use App\Entity\Condo;
 use App\Entity\User;
 use App\Exception\Condo\CondoNotFoundException;
+use App\Exception\User\UserHasNotAuthorizationException;
 use App\Repository\DoctrineCondoRepository;
 
 class GetCondoByIdService
@@ -19,6 +20,10 @@ class GetCondoByIdService
     {
         if (null === $condo = $this->condoRepository->findOneByIdIfActive($id)) {
             throw CondoNotFoundException::fromId($id);
+        }
+
+        if (!$condo->containsUser($user)) {
+            throw new UserHasNotAuthorizationException();
         }
 
         return $condo;
