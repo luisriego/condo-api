@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\User;
 
+use App\Entity\User;
 use App\Http\Response\ApiResponse;
 use App\Repository\DoctrineUserRepository;
 

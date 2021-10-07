@@ -45,3 +45,9 @@ Accept: application/json
 Authorization: {{token}}
 
 ###
+# Warning!! Remove this endpoint in production or implement ROLES will be necessary.
+GET http://{{host}}/api/v1/users
+Accept: application/json
+Authorization: {{token}}
+
+###
