@@ -21,6 +21,8 @@ class Condo
     private string $cnpj;
     private string $fantasyName;
     private Collection $users;
+    private Collection $categories;
+    private Collection $accounts;
 
     public function __construct(string $cnpj, string $fantasyName)
     {
@@ -29,6 +31,8 @@ class Condo
         $this->fantasyName = $fantasyName;
         $this->isActive = false;
         $this->users = new ArrayCollection();
+        $this->categories = new ArrayCollection();
+        $this->accounts = new ArrayCollection();
         $this->createdOn = new \DateTimeImmutable();
         $this->markAsUpdated();
     }
@@ -60,11 +64,9 @@ class Condo
 
     public function addUser(User $user): void
     {
-        if ($this->users->contains($user)) {
-            return;
+        if (!$this->users->contains($user)) {
+            $this->users->add($user);
         }
-
-        $this->users->add($user);
     }
 
     public function removeUser(User $user): void
@@ -79,7 +81,60 @@ class Condo
         return $this->users->contains($user);
     }
 
-    #[ArrayShape(['id' => 'string', 'fantasyName' => 'string', 'cnpj' => 'string', 'active' => 'false', 'createdOn' => 'string', 'updatedOn' => 'string', 'users' => 'array[]'])]
+    /**
+     * @return ArrayCollection|Collection
+     */
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+
+    public function addCategory(Category $category): void
+    {
+        if (!$this->categories->contains($category)) {
+            $this->categories->add($category);
+        }
+    }
+
+    public function removeCategory(Category $category): void
+    {
+        if ($this->categories->contains($category)) {
+            $this->categories->removeElement($category);
+        }
+    }
+
+    public function containsCategory(Category $category): bool
+    {
+        return $this->categories->contains($category);
+    }
+
+    /**
+     * @return ArrayCollection|Collection
+     */
+    public function getAccounts()
+    {
+        return $this->accounts;
+    }
+
+    public function addAccount(Account $account): void
+    {
+        if (!$this->accounts->contains($account)) {
+            $this->accounts->add($account);
+        }
+    }
+
+    public function removeAccount(Account $account): void
+    {
+        if ($this->accounts->contains($account)) {
+            $this->accounts->removeElement($account);
+        }
+    }
+
+    public function containsAccount(Account $account): bool
+    {
+        return $this->accounts->contains($account);
+    }
+
     public function toArray(): array
     {
         return [
@@ -92,6 +147,12 @@ class Condo
             'users' => array_map(function (User $user): array {
                 return $user->toArray();
             }, $this->users->toArray()),
+            'categories' => array_map(function (Category $category): array {
+                return $category->toArray();
+            }, $this->categories->toArray()),
+            'accounts' => array_map(function (Account $account): array {
+                return $account->toArray();
+            }, $this->accounts->toArray()),
         ];
     }
 }

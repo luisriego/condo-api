@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping">
+    <entity name="App\Entity\Account" table="account">
+        <id name="id" type="string" length="36" column-definition="CHAR(36) NOT NULL"/>
+
+        <field name="name" length="50" />
+        <field name="createdOn" type="datetime_immutable" />
+        <field name="updatedOn" type="datetime" />
+        
+        <many-to-one field="condo" target-entity="App\Entity\Condo" inversed-by="accounts" />
+        
+        <indexes>
+            <index columns="condo_id" name="IDX_account_condo_id" />
+        </indexes>
+    </entity>
+</doctrine-mapping>

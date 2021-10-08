@@ -24,6 +24,18 @@
             </join-table>
         </many-to-many>
 
+        <one-to-many field="categories" target-entity="App\Entity\Category" mapped-by="condo">
+            <cascade>
+                <cascade-remove />
+            </cascade>
+        </one-to-many>
+
+        <one-to-many field="accounts" target-entity="App\Entity\Account" mapped-by="condo">
+            <cascade>
+                <cascade-remove />
+            </cascade>
+        </one-to-many>
+
         <lifecycle-callbacks>
             <lifecycle-callback type="preUpdate" method="markAsUpdated"/>
         </lifecycle-callbacks>

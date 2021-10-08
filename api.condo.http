@@ -46,3 +46,13 @@ Accept: application/json
 Authorization: {{token}}
 
 ###
+
+POST http://{{host}}/api/v1/condos/condo_request
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "receiver": "cloe@api.com"
+}
+
+###

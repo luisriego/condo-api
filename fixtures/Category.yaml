@@ -1,0 +1,6 @@
+App\Entity\Category:
+  Category-1:
+    __construct:
+      name: 'Categoria 1'
+      type: 'expense'
+      condo: '@Condo-1'
