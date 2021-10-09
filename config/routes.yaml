@@ -103,6 +103,11 @@ api_account_create:
     controller: App\Controller\Account\CreateAccountAction
     methods: [POST]
 
+api_account_delete:
+    path: /api/v1/account/{id}
+    controller: App\Controller\Account\RemoveAccountAction
+    methods: [DELETE]
+
 api_account_update:
     path: /api/v1/account/{id}
     controller: App\Controller\Account\UpdateAccountAction
