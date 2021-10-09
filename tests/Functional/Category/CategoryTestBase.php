@@ -15,7 +15,7 @@ class CategoryTestBase extends FunctionalTestBase
     {
         parent::setUp();
 
-        $this->endpoint = '/api/v1/category';
+        $this->endpoint = '/api/v1/categories';
     }
 
     /**

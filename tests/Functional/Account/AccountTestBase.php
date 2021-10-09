@@ -15,7 +15,7 @@ class AccountTestBase extends FunctionalTestBase
     {
         parent::setUp();
 
-        $this->endpoint = '/api/v1/account';
+        $this->endpoint = '/api/v1/accounts';
     }
 
     /**

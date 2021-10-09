@@ -92,23 +92,38 @@ api_send_condo_request:
 
 # Category
 api_category_create:
-    path: /api/v1/category/create
+    path: /api/v1/categories/create
     controller: App\Controller\Category\CreateCategoryAction
     methods: [POST]
 
 
 # Account
 api_account_create:
-    path: /api/v1/account/create
+    path: /api/v1/accounts/create
     controller: App\Controller\Account\CreateAccountAction
     methods: [POST]
 
 api_account_delete:
-    path: /api/v1/account/{id}
+    path: /api/v1/accounts/{id}
     controller: App\Controller\Account\RemoveAccountAction
     methods: [DELETE]
 
+api_account_get_one:
+    path: /api/v1/accounts/{id}
+    controller: App\Controller\Account\GetAccountAction
+    methods: [GET]
+
+api_account_get_by_condo:
+    path: /api/v1/accounts/{accountId}/condo/{condoid}
+    controller: App\Controller\Account\GetAccountsByCondoAction
+    methods: [GET]
+
 api_account_update:
-    path: /api/v1/account/{id}
+    path: /api/v1/accounts/{id}
     controller: App\Controller\Account\UpdateAccountAction
     methods: [PUT]
+
+#api_account_get_all:
+#    path: /api/v1/accounts
+#    controller: App\Controller\Account\GetAccountsAction
+#    methods: [GET]
