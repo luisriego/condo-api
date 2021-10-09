@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace App\Controller\User;
 
+use App\Http\DTO\UpdateNameRequest;
 use App\Http\Response\ApiResponse;
 use App\Service\User\UpdateUserService;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class UpdateUserAction
 {
@@ -15,15 +14,9 @@ class UpdateUserAction
     {
     }
 
-    public function __invoke(Request $request, string $id): ApiResponse
+    public function __invoke(UpdateNameRequest $request, string $id): ApiResponse
     {
-        $responseData = \json_decode($request->getContent(), true);
-
-        if (null === $name = $responseData['name']) {
-            throw new BadRequestHttpException('Name param is mandatory');
-        }
-
-        $user = $this->updateUserService->__invoke($id, $name);
+        $user = $this->updateUserService->__invoke($id, $request->getName());
 
         return new ApiResponse($user->toArray());
     }

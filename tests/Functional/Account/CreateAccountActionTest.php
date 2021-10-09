@@ -2,23 +2,21 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Functional\Category;
+namespace App\Tests\Functional\Account;
 
-use App\Entity\Category;
 use Doctrine\DBAL\DBALException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class CreateCategoryActionTest extends CategoryTestBase
+class CreateAccountActionTest extends AccountTestBase
 {
     /**
      * @throws DBALException
      */
-    public function testCreateCategory(): void
+    public function testCreateAccount(): void
     {
         $payload = [
             'name' => 'Energia',
-            'type' => Category::EXPENSE,
             'condoId' => $this->getLuisCondoId()
         ];
 
@@ -35,17 +33,15 @@ class CreateCategoryActionTest extends CategoryTestBase
 
         $responseData = \json_decode($response->getContent(), true);
         self::assertArrayHasKey('name', $responseData);
-        self::assertEquals('expense', $responseData['type']);
     }
 
     /**
      * @throws DBALException
      */
-    public function testUpdateCondoFailBecauseUnauthorizeUser(): void
+    public function testCreateAccountFailBecauseUnauthorizeUser(): void
     {
         $payload = [
             'name' => 'Energia',
-            'type' => Category::EXPENSE,
             'condoId' => $this->getLuisCondoId()
         ];
 
@@ -64,11 +60,10 @@ class CreateCategoryActionTest extends CategoryTestBase
     /**
      * @throws DBALException
      */
-    public function testUpdateCondoWithoutName(): void
+    public function testCreateAccountWithoutName(): void
     {
         $payload = [
 //            'name' => 'Energia',
-            'type' => Category::EXPENSE,
             'condoId' => $this->getLuisCondoId()
         ];
 
@@ -87,11 +82,10 @@ class CreateCategoryActionTest extends CategoryTestBase
     /**
      * @throws DBALException
      */
-    public function testUpdateCondoWithTooShortName(): void
+    public function testCreateAccountWithTooShortName(): void
     {
         $payload = [
             'name' => 'En',
-            'type' => Category::EXPENSE,
             'condoId' => $this->getLuisCondoId()
         ];
 
@@ -110,34 +104,10 @@ class CreateCategoryActionTest extends CategoryTestBase
     /**
      * @throws DBALException
      */
-    public function testUpdateCondoWithWrongType(): void
+    public function testCreateAccountWithTooShortCondoId(): void
     {
         $payload = [
             'name' => 'Energia',
-            'type' => 'wrong-type',
-            'condoId' => $this->getLuisCondoId()
-        ];
-
-        self::$authenticatedClient->request(
-            Request::METHOD_POST,
-            \sprintf('%s/create', $this->endpoint),
-            [], [], [],
-            \json_encode($payload)
-        );
-
-        $response = self::$authenticatedClient->getResponse();
-
-        self::assertEquals(Response::HTTP_BAD_REQUEST, $response->getStatusCode());
-    }
-
-    /**
-     * @throws DBALException
-     */
-    public function testUpdateCondoWithTooShortCondoId(): void
-    {
-        $payload = [
-            'name' => 'Energia',
-            'type' => Category::EXPENSE,
             'condoId' => '12345678901234567890123456789012345'
         ];
 

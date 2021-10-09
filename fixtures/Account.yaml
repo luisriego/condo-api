@@ -1,0 +1,5 @@
+App\Entity\Account:
+  Account-1:
+    __construct:
+      name: 'Conta Condominio'
+      condo: '@Condo-1'

@@ -95,3 +95,15 @@ api_category_create:
     path: /api/v1/category/create
     controller: App\Controller\Category\CreateCategoryAction
     methods: [POST]
+
+
+# Account
+api_account_create:
+    path: /api/v1/account/create
+    controller: App\Controller\Account\CreateAccountAction
+    methods: [POST]
+
+api_account_update:
+    path: /api/v1/account/{id}
+    controller: App\Controller\Account\UpdateAccountAction
+    methods: [PUT]
