@@ -3,3 +3,7 @@ App\Entity\Account:
     __construct:
       name: 'Conta Condominio'
       condo: '@Condo-1'
+  Account-2:
+    __construct:
+      name: 'Fundo de Reserva'
+      condo: '@Condo-1'

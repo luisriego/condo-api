@@ -1,4 +1,4 @@
-POST http://{{host}}/api/v1/account/create
+POST http://{{host}}/api/v1/accounts/create
 Content-Type: application/json
 Authorization: {{token}}
 
@@ -9,12 +9,18 @@ Authorization: {{token}}
 
 ###
 
-PUT http://{{host}}/api/v1/account/f32258a6-c29f-4f91-b62c-1906c11418e8
+PUT http://{{host}}/api/v1/accounts/f32258a6-c29f-4f91-b62c-1906c11418e8
 Content-Type: application/json
 Authorization: {{token}}
 
 {
   "name": "Conta exclusiva para Gas"
 }
+
+###
+
+GET http://{{host}}/api/v1/accounts/condo/fc6c100c-b24a-4f54-822a-1c1d8e7a7829
+Accept: application/json
+Authorization: {{token}}
 
 ###

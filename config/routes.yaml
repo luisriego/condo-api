@@ -98,6 +98,11 @@ api_category_create:
 
 
 # Account
+api_account_get_by_condo:
+    path: /api/v1/accounts/condo/{condoId}
+    controller: App\Controller\Account\GetAccountsByCondoAction
+    methods: [GET]
+
 api_account_create:
     path: /api/v1/accounts/create
     controller: App\Controller\Account\CreateAccountAction
@@ -111,11 +116,6 @@ api_account_delete:
 api_account_get_one:
     path: /api/v1/accounts/{id}
     controller: App\Controller\Account\GetAccountAction
-    methods: [GET]
-
-api_account_get_by_condo:
-    path: /api/v1/accounts/{accountId}/condo/{condoid}
-    controller: App\Controller\Account\GetAccountsByCondoAction
     methods: [GET]
 
 api_account_update:

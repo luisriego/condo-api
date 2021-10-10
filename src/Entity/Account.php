@@ -54,5 +54,12 @@ class Account
         ];
     }
 
-
+    public function toSimpleArray(): array
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'condo' => $this->condo->getId(),
+        ];
+    }
 }

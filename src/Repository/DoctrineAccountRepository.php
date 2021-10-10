@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Repository;
 
 use App\Entity\Account;
+use App\Exception\Account\AccountNotFoundException;
+use Doctrine\ORM\Query\ResultSetMappingBuilder;
 
 class DoctrineAccountRepository extends DoctrineBaseRepository
 {
@@ -28,6 +30,29 @@ class DoctrineAccountRepository extends DoctrineBaseRepository
     {
         return $this->objectRepository->findOneBy(['condo' => $condoId, 'name' => $name]);
     }
+
+    /**
+     * @return Account[]|null
+     */
+    public function findAllByIdWithNativeQuery(string $id): ?array
+    {
+        $rsm = new ResultSetMappingBuilder($this->getEntityManager());
+        $rsm->addRootEntityFromClassMetadata(Account::class, 'a');
+
+        $query = $this->getEntityManager()->createNativeQuery('SELECT * FROM account WHERE condo_id = :id', $rsm);
+        $query->setParameter('id', $id);
+
+        return $query->getResult();
+    }
+
+//    public function findAllByCondoOrFail(string $condoId): ?array
+//    {
+//        if (null === $accounts = $this->objectRepository->find('condoId', $condoId)) {
+//            throw new AccountNotFoundException();
+//        }
+//
+//        return $accounts;
+//    }
 
     public function save(Account $account): void
     {
