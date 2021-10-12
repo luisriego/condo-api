@@ -127,3 +127,9 @@ api_account_update:
 #    path: /api/v1/accounts
 #    controller: App\Controller\Account\GetAccountsAction
 #    methods: [GET]
+
+# Movement
+api_movement_create:
+    path: /api/v1/movements
+    controller: App\Controller\Movement\CreateMovementAction
+    methods: [POST]

@@ -54,12 +54,11 @@ class Account
         ];
     }
 
-    public function toSimpleArray(): array
+    public function toArrayMinimalist(): array
     {
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'condo' => $this->condo->getId(),
         ];
     }
 }

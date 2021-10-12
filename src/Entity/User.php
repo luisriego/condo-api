@@ -128,6 +128,15 @@ class User implements UserInterface
         ];
     }
 
+    public function toArrayMinimalist(): array
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'email' => $this->email,
+        ];
+    }
+
 //    Implementations
 
     public function getRoles(): array

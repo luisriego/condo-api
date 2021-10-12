@@ -1,0 +1,15 @@
+App\Entity\Movement:
+  Movement-1:
+    __construct:
+      category: '@Category-1'
+      account: '@Account-1'
+      condo: '@Condo-1'
+      amount: 123456
+      user: '@User-1'
+  Movement-2:
+    __construct:
+      category: '@Category-1'
+      account: '@Account-2'
+      condo: '@Condo-1'
+      amount: 7890
+      user: '@User-1'

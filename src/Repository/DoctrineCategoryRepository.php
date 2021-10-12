@@ -15,7 +15,7 @@ class DoctrineCategoryRepository extends DoctrineBaseRepository
 
     public function findOneByIdOrFail(string $id): ?Category
     {
-        return $this->objectRepository->findOneBy(['id' => $id, 'isActive' => true]);
+        return $this->objectRepository->findOneBy(['id' => $id]);
     }
 
     public function findOneByCondoOrFail(string $condoId): ?Category

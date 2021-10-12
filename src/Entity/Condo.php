@@ -155,4 +155,13 @@ class Condo
             }, $this->accounts->toArray()),
         ];
     }
+
+    public function toArrayMinimalist(): array
+    {
+        return [
+            'id' => $this->id,
+            'fantasyName' => $this->fantasyName,
+            'cnpj' => $this->cnpj,
+        ];
+    }
 }

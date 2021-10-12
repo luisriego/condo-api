@@ -6,6 +6,7 @@ namespace App\Entity;
 
 use App\Trait\IdentifierTrait;
 use App\Trait\TimestampableTrait;
+use JetBrains\PhpStorm\ArrayShape;
 use Symfony\Component\Uid\Uuid;
 
 class Category
@@ -54,6 +55,7 @@ class Category
         $this->condo = $condo;
     }
 
+    #[ArrayShape(['id' => "string", 'name' => "string", 'type' => "string", 'condo' => "string", 'createdOn' => "string", 'updatedOn' => "string"])]
     public function toArray(): array
     {
         return [
@@ -63,6 +65,15 @@ class Category
             'condo' => $this->condo->getId(),
             'createdOn' => $this->createdOn->format(\DateTime::RFC3339),
             'updatedOn' => $this->updatedOn->format(\DateTime::RFC3339),
+        ];
+    }
+
+    #[ArrayShape(['id' => "string", 'name' => "string"])] public function
+    toArrayMinimalist(): array
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
         ];
     }
 }
