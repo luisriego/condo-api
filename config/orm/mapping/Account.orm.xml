@@ -12,5 +12,9 @@
         <indexes>
             <index columns="condo_id" name="IDX_account_condo_id" />
         </indexes>
+
+        <lifecycle-callbacks>
+            <lifecycle-callback type="preUpdate" method="markAsUpdated"/>
+        </lifecycle-callbacks>
     </entity>
 </doctrine-mapping>

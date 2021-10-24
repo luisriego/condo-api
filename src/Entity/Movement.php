@@ -21,6 +21,8 @@ class Movement
     private ?User $user;
     private ?Category $category;
     private ?string $filePath;
+    private ?\DateTime $dueOn;
+    private ?\DateTime $regarding; // Make reference to month?
 
     public function __construct(Account $account, Condo $condo, int $amount, Category $category = null)
     {
@@ -33,6 +35,8 @@ class Movement
         $this->name = '';
         $this->filePath = null;
         $this->isActive = true;
+        $this->dueOn = null;
+        $this->regarding = null;
         $this->createdOn = new \DateTimeImmutable();
         $this->markAsUpdated();
     }
@@ -97,6 +101,26 @@ class Movement
         $this->filePath = $filePath;
     }
 
+    public function getDueOn(): ?\DateTime
+    {
+        return $this->dueOn;
+    }
+
+    public function setDueOn(?\DateTime $dueOn): void
+    {
+        $this->dueOn = $dueOn;
+    }
+
+    public function getRegarding(): ?\DateTime
+    {
+        return $this->regarding;
+    }
+
+    public function setRegarding(?\DateTime $regarding): void
+    {
+        $this->regarding = $regarding;
+    }
+
     public function belongsToCondo(Condo $condo): bool
     {
         return $this->condo->getId() === $condo->getId();
@@ -108,7 +132,6 @@ class Movement
         return strval($operation);
     }
 
-    #[ArrayShape(['id' => "string", 'category' => "array", 'account' => "array", 'condo' => "array", 'amount' => "int", 'user' => "array", 'createdOn' => "string", 'updatedOn' => "string"])]
     public function toArrayFull(): array
     {
         return [
@@ -117,6 +140,8 @@ class Movement
             'account' => $this->account->toArray(),
             'condo' => $this->condo->toArray(),
             'amount' => $this->toReal($this->amount),
+            'dueOn' => $this->dueOn,
+            'regarding' => $this->regarding,
             'user' => $this->user->toArray(),
             'createdOn' => $this->createdOn->format(\DateTime::RFC3339),
             'updatedOn' => $this->updatedOn->format(\DateTime::RFC3339),
@@ -131,12 +156,15 @@ class Movement
             'account' => $this->account->toArrayMinimalist(),
             'condo' => $this->condo->toArrayMinimalist(),
             'amount' => $this->toReal($this->amount),
+            'dueOn' => $this->dueOn,
+            'regarding' => $this->regarding,
             'user' => $this->user->toArrayMinimalist(),
             'createdOn' => $this->createdOn->format(\DateTime::RFC3339),
             'updatedOn' => $this->updatedOn->format(\DateTime::RFC3339),
         ];
     }
 
+    #[ArrayShape(['id' => "string", 'category' => "string", 'account' => "string", 'condo' => "string", 'amount' => "string", 'dueOn' => "\DateTime|null", 'regarding' => "\DateTime|null", 'user' => "string"])]
     public function toArrayMinimalist(): array
     {
         return [
@@ -145,6 +173,8 @@ class Movement
             'account' => $this->account->getId(),
             'condo' => $this->condo->getId(),
             'amount' => $this->toReal($this->amount),
+            'dueOn' => $this->dueOn,
+            'regarding' => $this->regarding,
             'user' => $this->user->getId()
         ];
     }

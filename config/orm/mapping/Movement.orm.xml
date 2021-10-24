@@ -6,6 +6,8 @@
         <field name="amount" type="integer" />
         <field name="filePath" length="255" nullable="true" />
         <field name="isActive" type="boolean" />
+        <field name="dueOn" type="datetime" nullable="true" />
+        <field name="regarding" type="datetime" nullable="true" />
         <field name="createdOn" type="datetime_immutable" />
         <field name="updatedOn" type="datetime" />
 
@@ -22,5 +24,15 @@
             <join-column name="user_id" on-delete="CASCADE" />
         </many-to-one>
 
+        <indexes>
+            <index columns="category_id" name="IDX_movement_category_id" />
+            <index columns="account_id" name="IDX_movement_account_id" />
+            <index columns="condo_id" name="IDX_movement_condo_id" />
+            <index columns="user_id" name="IDX_movement_user_id" />
+        </indexes>
+
+        <lifecycle-callbacks>
+            <lifecycle-callback type="preUpdate" method="markAsUpdated"/>
+        </lifecycle-callbacks>
     </entity>
 </doctrine-mapping>
