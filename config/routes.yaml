@@ -144,6 +144,11 @@ api_movement_get:
     controller: App\Controller\Movement\GetMovementAction
     methods: [GET]
 
+api_movement_delete:
+    path: /api/v1/movements/{id}
+    controller: App\Controller\Movement\RemoveMovementAction
+    methods: [DELETE]
+
 api_movement_update:
     path: /api/v1/movements/{id}
     controller: App\Controller\Movement\UpdateMovementAction
