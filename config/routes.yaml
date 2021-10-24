@@ -129,7 +129,22 @@ api_account_update:
 #    methods: [GET]
 
 # Movement
+api_movement_by_condo:
+    path: /api/v1/movements/condo/{condoId}
+    controller: App\Controller\Movement\GetMovementsByCondoAction
+    methods: [GET]
+
 api_movement_create:
     path: /api/v1/movements
     controller: App\Controller\Movement\CreateMovementAction
     methods: [POST]
+
+api_movement_get:
+    path: /api/v1/movements/{id}
+    controller: App\Controller\Movement\GetMovementAction
+    methods: [GET]
+
+api_movement_update:
+    path: /api/v1/movements/{id}
+    controller: App\Controller\Movement\UpdateMovementAction
+    methods: [PUT]

@@ -47,4 +47,14 @@ class MovementTestBase extends FunctionalTestBase
     {
         return $this->initDbConnection()->query('SELECT id FROM category WHERE name = "Categoria 1"')->fetchColumn(0);
     }
+
+    /**
+     * @return false|mixed
+     *
+     * @throws DBALException
+     */
+    protected function getLuisMovementId()
+    {
+        return $this->initDbConnection()->query('SELECT id FROM movement WHERE amount = 123456')->fetchColumn(0);
+    }
 }

@@ -22,7 +22,7 @@ class GetAccountsByCondoAction
         $accounts = $this->getAccountsByCondoService->__invoke($condoId, $user);
 
         $result = array_map(function (Account $account): array {
-            return $account->toSimpleArray();
+            return $account->toArrayMinimalist();
         }, $accounts);
 
         return new ApiResponse(['accounts' => $result]);

@@ -7,7 +7,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class CreateMovementRequest implements RequestDTO
 {
-    #[Assert\NotBlank]
     #[Assert\Length(min: 36, max: 36)]
     private ?string $category;
 

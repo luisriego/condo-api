@@ -17,11 +17,10 @@ class CreateMovemetActionTest extends MovementTestBase
     public function testCreateMovement(): void
     {
         $payload = [
-            'category' => $this->getLuisCondoCategoryId(),
             'account' => $this->getLuisCondoAccountId(),
             'condo' => $this->getLuisCondoId(),
-            'user' => $this->getLuisId(),
             'amount' => 37550,
+            'category' => $this->getLuisCondoCategoryId(),
         ];
 
         self::$authenticatedClient->request(
@@ -37,22 +36,50 @@ class CreateMovemetActionTest extends MovementTestBase
 
         $responseData = \json_decode($response->getContent(), true);
         self::assertArrayHasKey('amount', $responseData);
-        self::assertEquals(37550, $responseData['amount']);
+        self::assertEquals(375.5, $responseData['amount']);
     }
 
     /**
      * @throws DBALException
      */
-    public function testCreateAccountFailBecauseUnauthorizeUser(): void
+    public function testCreateMovementWithoutUser(): void
     {
         $payload = [
-            'name' => 'Energia',
-            'condoId' => $this->getLuisCondoId()
+            'category' => $this->getLuisCondoCategoryId(),
+            'account' => $this->getLuisCondoAccountId(),
+            'condo' => $this->getLuisCondoId(),
+//            'user' => $this->getLuisId(),
+            'amount' => 37550,
+        ];
+
+        self::$authenticatedClient->request(
+            Request::METHOD_POST,
+            \sprintf('%s', $this->endpoint),
+            [], [], [],
+            \json_encode($payload)
+        );
+
+        $response = self::$authenticatedClient->getResponse();
+
+        self::assertEquals(Response::HTTP_CREATED, $response->getStatusCode());
+    }
+
+    /**
+     * @throws DBALException
+     */
+    public function testCreateMovementFailBecauseUnauthorizeUser(): void
+    {
+        $payload = [
+            'category' => $this->getLuisCondoCategoryId(),
+            'account' => $this->getLuisCondoAccountId(),
+            'condo' => $this->getLuisCondoId(),
+            'user' => $this->getLuisId(),
+            'amount' => 37550,
         ];
 
         self::$anotherAuthenticatedClient->request(
             Request::METHOD_POST,
-            \sprintf('%s/create', $this->endpoint),
+            \sprintf('%s', $this->endpoint),
             [], [], [],
             \json_encode($payload)
         );
@@ -65,16 +92,43 @@ class CreateMovemetActionTest extends MovementTestBase
     /**
      * @throws DBALException
      */
-    public function testCreateAccountWithoutName(): void
+    public function testCreateMovementFailBecauseWithoutCategory(): void
     {
         $payload = [
-//            'name' => 'Energia',
-            'condoId' => $this->getLuisCondoId()
+            'account' => $this->getLuisCondoAccountId(),
+            'condo' => $this->getLuisCondoId(),
+            'user' => $this->getLuisId(),
+            'amount' => 37550,
+//            'category' => $this->getLuisCondoCategoryId(),
+        ];
+        self::$authenticatedClient->request(
+            Request::METHOD_POST,
+            \sprintf('%s', $this->endpoint),
+            [], [], [],
+            \json_encode($payload)
+        );
+
+        $response = self::$authenticatedClient->getResponse();
+
+        self::assertEquals(Response::HTTP_NOT_FOUND, $response->getStatusCode());
+    }
+
+    /**
+     * @throws DBALException
+     */
+    public function testCreateMovementFailBecauseWithoutAccount(): void
+    {
+        $payload = [
+            'category' => $this->getLuisCondoCategoryId(),
+//            'account' => $this->getLuisCondoAccountId(),
+            'condo' => $this->getLuisCondoId(),
+            'user' => $this->getLuisId(),
+            'amount' => 37550,
         ];
 
         self::$authenticatedClient->request(
             Request::METHOD_POST,
-            \sprintf('%s/create', $this->endpoint),
+            \sprintf('%s', $this->endpoint),
             [], [], [],
             \json_encode($payload)
         );
@@ -87,16 +141,19 @@ class CreateMovemetActionTest extends MovementTestBase
     /**
      * @throws DBALException
      */
-    public function testCreateAccountWithTooShortName(): void
+    public function testCreateMovementFailBecauseWithoutCondo(): void
     {
         $payload = [
-            'name' => 'En',
-            'condoId' => $this->getLuisCondoId()
+            'category' => $this->getLuisCondoCategoryId(),
+            'account' => $this->getLuisCondoAccountId(),
+//            'condo' => $this->getLuisCondoId(),
+            'user' => $this->getLuisId(),
+            'amount' => 37550,
         ];
 
         self::$authenticatedClient->request(
             Request::METHOD_POST,
-            \sprintf('%s/create', $this->endpoint),
+            \sprintf('%s', $this->endpoint),
             [], [], [],
             \json_encode($payload)
         );
@@ -109,16 +166,19 @@ class CreateMovemetActionTest extends MovementTestBase
     /**
      * @throws DBALException
      */
-    public function testCreateAccountWithTooShortCondoId(): void
+    public function testCreateMovementFailBecauseWithoutAmount(): void
     {
         $payload = [
-            'name' => 'Energia',
-            'condoId' => '12345678901234567890123456789012345'
+            'category' => $this->getLuisCondoCategoryId(),
+            'account' => $this->getLuisCondoAccountId(),
+            'condo' => $this->getLuisCondoId(),
+            'user' => $this->getLuisId(),
+//            'amount' => 37550,
         ];
 
         self::$authenticatedClient->request(
             Request::METHOD_POST,
-            \sprintf('%s/create', $this->endpoint),
+            \sprintf('%s', $this->endpoint),
             [], [], [],
             \json_encode($payload)
         );

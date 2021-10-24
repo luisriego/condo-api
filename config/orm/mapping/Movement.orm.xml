@@ -9,10 +9,18 @@
         <field name="createdOn" type="datetime_immutable" />
         <field name="updatedOn" type="datetime" />
 
-        <many-to-one field="category" target-entity="App\Entity\Category" />
-        <many-to-one field="account" target-entity="App\Entity\Account" />
-        <many-to-one field="condo" target-entity="App\Entity\Condo" />
-        <many-to-one field="user" target-entity="App\Entity\User" />
+        <many-to-one field="category" target-entity="App\Entity\Category">
+            <join-column name="category_id" on-delete="CASCADE" />
+        </many-to-one>
+        <many-to-one field="account" target-entity="App\Entity\Account">
+            <join-column name="account_id" on-delete="CASCADE" />
+        </many-to-one>
+        <many-to-one field="condo" target-entity="App\Entity\Condo">
+            <join-column name="condo_id" on-delete="CASCADE" />
+        </many-to-one>
+        <many-to-one field="user" target-entity="App\Entity\User">
+            <join-column name="user_id" on-delete="CASCADE" />
+        </many-to-one>
 
     </entity>
 </doctrine-mapping>

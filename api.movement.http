@@ -3,11 +3,10 @@ Content-Type: application/json
 Authorization: {{token}}
 
 {
-  "category": "5ba66c73-2388-4f9d-9a47-d6d61939f504",
   "account": "f32258a6-c29f-4f91-b62c-1906c11418e8",
   "condo": "fc6c100c-b24a-4f54-822a-1c1d8e7a7829",
-  "user": "a154c8a5-bb2e-4f03-9720-0ac50ec08f12",
-  "amount": 37550
+  "amount": 37550,
+  "category": "5ba66c73-2388-4f9d-9a47-d6d61939f504"
 }
 
 ###
@@ -22,7 +21,13 @@ Authorization: {{token}}
 
 ###
 
-GET http://{{host}}/api/v1/accounts/condo/fc6c100c-b24a-4f54-822a-1c1d8e7a7829
+GET http://{{host}}/api/v1/movements/2d8ecc62-0def-4f12-89e2-61ee284772e1
+Accept: application/json
+Authorization: {{token}}
+
+###
+
+GET http://{{host}}/api/v1/movements/condo/fc6c100c-b24a-4f54-822a-1c1d8e7a7829
 Accept: application/json
 Authorization: {{token}}
 

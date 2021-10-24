@@ -1,28 +1,27 @@
 <?php
 
-namespace App\Service\Account;
+declare(strict_types=1);
 
-use App\Entity\Account;
+
+namespace App\Service\Movement;
+
+use App\Entity\Movement;
 use App\Entity\User;
 use App\Exception\Account\AccountNotFoundException;
 use App\Exception\Condo\CondoNotFoundException;
 use App\Exception\User\UserHasNotAuthorizationException;
-use App\Repository\DoctrineAccountRepository;
 use App\Repository\DoctrineCondoRepository;
+use App\Repository\DoctrineMovementRepository;
 
-class GetAccountsByCondoService
+class GetMovementsByCondoService
 {
-    private DoctrineAccountRepository $accountRepository;
-    private DoctrineCondoRepository $condoRepository;
-
-    public function __construct(DoctrineAccountRepository $accountRepository, DoctrineCondoRepository $condoRepository)
-    {
-        $this->accountRepository = $accountRepository;
-        $this->condoRepository = $condoRepository;
-    }
+    public function __construct(
+        private DoctrineMovementRepository $movementRepository,
+        private DoctrineCondoRepository $condoRepository)
+    { }
 
     /**
-     * @return Account[]
+     * @return Movement[]
      */
     public function __invoke(string $condoId, User $user): array
     {
@@ -34,12 +33,10 @@ class GetAccountsByCondoService
             throw new UserHasNotAuthorizationException();
         }
 
-
-        if (null === $accounts = $this->accountRepository->findAllByIdWithNativeQuery($condoId)) {
+        if (null === $movements = $this->movementRepository->findAllByIdWithNativeQuery($condoId)) {
             throw AccountNotFoundException::fromId($condoId);
         }
 
-        return $accounts;
+        return $movements;
     }
-
 }

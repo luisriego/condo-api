@@ -128,6 +128,7 @@ class User implements UserInterface
         ];
     }
 
+    #[ArrayShape(['id' => "string", 'name' => "string", 'email' => "string"])]
     public function toArrayMinimalist(): array
     {
         return [

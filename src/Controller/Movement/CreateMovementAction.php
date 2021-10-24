@@ -19,12 +19,11 @@ class CreateMovementAction
     public function __invoke(CreateMovementRequest $request, User $user): ApiResponse
     {
         $movement = $this->createMovementService->__invoke(
-            $request->getCategory(),
             $request->getAccount(),
             $request->getCondo(),
             $user,
             $request->getAmount(),
-
+            $request->getCategory(),
         );
 
         return new ApiResponse($movement->toArrayMinimalist(), Response::HTTP_CREATED);
